@@ -20,9 +20,12 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 
 @main
 struct ProductiveApp: App {
+    init(){
+        FirebaseApp.configure()
+    }
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            WelcomePageView()
         }
     }
 }
