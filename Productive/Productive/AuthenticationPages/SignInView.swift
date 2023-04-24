@@ -19,8 +19,10 @@ struct SignInView: View {
             ContentView()
         } else {
             notLoggedIn
+            
         }
     }
+    
     
     var notLoggedIn: some View {
         NavigationView{
@@ -86,6 +88,7 @@ struct SignInView: View {
                 
             } else {
                 self.loggedIn.toggle()
+                print("Test")
             }
         }
     }
