@@ -14,13 +14,23 @@ struct SignUpView: View {
     @State private var email: String = ""
     @State private var password: String = ""
     @State private var isSignedUp: Bool = false;
+    @State private var accountExists: Bool = false;
+    @State private var whichView: Int32 = 0;
     
     var body: some View {
-        if(isSignedUp){
-            ContentView()
-        }
-        else {
-            isNotSignedUp
+        //if(isSignedUp){
+        //    ContentView()
+        //}
+        //if (accountExists) {
+        //    SignInView()
+        //}
+        switch whichView {
+            case 1:
+                ContentView()
+            case 2:
+                SignInView()
+            default:
+                isNotSignedUp
         }
     }
     
@@ -31,7 +41,7 @@ struct SignUpView: View {
                 Spacer()
                 HStack {
                     Image(systemName: "person")
-                    TextField("username", text: $username)
+                    TextField("name", text: $username)
                     
                 }
                 .frame(minWidth: 0, maxWidth: 250)
@@ -68,7 +78,7 @@ struct SignUpView: View {
                 
                 HStack {
                     Text("Already have an account?")
-                    NavigationLink(destination: SignInView()) {
+                    Button(action: switchLogin){
                         Text("Login")
                     }
                 }.font(.system(size: 14))
@@ -105,17 +115,23 @@ struct SignUpView: View {
                     db.collection("user").addDocument(data: [
                         "id": email,
                         "firstname": username,
-                        "lastname": username
+                        "lastname": username,
+                        "groups": [""]
                     ]) { err in
                         if err != nil {
                             print(err!.localizedDescription)
                         }
                         self.isSignedUp.toggle()
+                        self.whichView = 1
                     }
                     
-                }
                 
+                }
             }
+        }
+        func switchLogin(){
+            self.accountExists.toggle()
+            self.whichView = 2
         }
     //bracket for View
     }
