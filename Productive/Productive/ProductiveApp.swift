@@ -20,9 +20,12 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 
 @main
 struct ProductiveApp: App {
+
     init(){
         FirebaseApp.configure()
     }
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
+
     var body: some Scene {
         WindowGroup {
             WelcomePageView()
