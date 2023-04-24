@@ -7,13 +7,24 @@
 
 import SwiftUI
 import FirebaseAuth
+import FirebaseFirestore
 
 struct SignUpView: View {
     @State private var username: String = ""
     @State private var email: String = ""
     @State private var password: String = ""
+    @State private var isSignedUp: Bool = false;
     
     var body: some View {
+        if(isSignedUp){
+            ContentView()
+        }
+        else {
+            isNotSignedUp
+        }
+    }
+    
+    var isNotSignedUp: some View {
         NavigationView{
             VStack{
                 Image("IconTestDoner")
@@ -86,7 +97,25 @@ struct SignUpView: View {
         //bracket for View-Body
         }
         func signup(){
-            Auth.auth().createUser(withEmail: email, password: password)
+            Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
+                if error != nil {
+                    print(error!.localizedDescription)
+                } else {
+                    let db = Firestore.firestore()
+                    db.collection("user").addDocument(data: [
+                        "id": email,
+                        "firstname": username,
+                        "lastname": username
+                    ]) { err in
+                        if err != nil {
+                            print(err!.localizedDescription)
+                        }
+                        self.isSignedUp.toggle()
+                    }
+                    
+                }
+                
+            }
         }
     //bracket for View
     }

@@ -6,19 +6,30 @@
 //
 
 import SwiftUI
+import FirebaseAuth
+
 
 struct SignInView: View {
-    @State private var username: String = ""
+    @State private var email: String = ""
     @State private var password: String = ""
+    @State private var loggedIn = false
     
     var body: some View {
+        if loggedIn {
+            ContentView()
+        } else {
+            notLoggedIn
+        }
+    }
+    
+    var notLoggedIn: some View {
         NavigationView{
             VStack{
                 Image("IconTestDoner")
                 Spacer()
                 HStack {
                     Image(systemName: "person")
-                    TextField("username/email", text: $username)
+                    TextField("email", text: $email)
                         
                     }
                     .frame(minWidth: 0, maxWidth: 250)
@@ -42,7 +53,7 @@ struct SignInView: View {
                     RoundedRectangle(cornerRadius: 25).stroke(Color.black, lineWidth: 2))
                 
                 Spacer()
-                NavigationLink(destination: ContentView()) {
+                Button(action: signIn) {
                     Text("Sign In")
                         .frame(minWidth: 0, maxWidth: 250)
                         .font(.system(size: 18))
@@ -67,6 +78,16 @@ struct SignInView: View {
                 }
             //bracket for NavigationView
             }
+    }
+    func signIn(){
+        Auth.auth().signIn(withEmail: email, password: password) { result, error in
+            if error != nil {
+                print(error!.localizedDescription)
+                
+            } else {
+                self.loggedIn.toggle()
+            }
+        }
     }
 }
 
