@@ -29,6 +29,8 @@ struct ContentView: View {
                     Label("Settings", systemImage: "gear")
                 }
         }
+        .navigationBarBackButtonHidden(true)
+        
     }
 }
 
