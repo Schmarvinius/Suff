@@ -43,6 +43,7 @@ class DataManager: ObservableObject {
                     let id = data["id"] as? String ?? ""
                     let firstname = data["firstname"] as? String ?? ""
                     let lastname = data["lastname"] as? String ?? ""
+                    let groups:[String] = data["groups"] as? [String] ?? [""]
                     
                     
                     let user = User(id: id, firstname: firstname, lastname: lastname, groupIDs: groups)
