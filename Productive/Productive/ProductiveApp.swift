@@ -20,6 +20,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 
 @main
 struct ProductiveApp: App {
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     var body: some Scene {
         WindowGroup {
             ContentView()
