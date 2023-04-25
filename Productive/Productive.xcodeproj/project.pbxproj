@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		27426D3729F7D9680034C838 /* AddGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27426D3629F7D9680034C838 /* AddGroupView.swift */; };
+		27426D3929F7D9740034C838 /* AddChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27426D3829F7D9740034C838 /* AddChatView.swift */; };
 		2770235329F5AF5B00F0FC7E /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		2770235529F5AF5B00F0FC7E /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = 2770235429F5AF5B00F0FC7E /* FirebaseAnalyticsOnDeviceConversion */; };
 		2770235729F5AF5B00F0FC7E /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 2770235629F5AF5B00F0FC7E /* FirebaseAnalyticsSwift */; };
@@ -72,6 +74,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		27426D3629F7D9680034C838 /* AddGroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGroupView.swift; sourceTree = "<group>"; };
+		27426D3829F7D9740034C838 /* AddChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddChatView.swift; sourceTree = "<group>"; };
 		2770238A29F5B5D600F0FC7E /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		27B0D22929F581AE001203E8 /* Groups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Groups.swift; sourceTree = "<group>"; };
 		57D8180A29F6AECA001A14FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -154,6 +158,8 @@
 				E85E19B729F17BC20018D3E3 /* GroupView.swift */,
 				27B0D22929F581AE001203E8 /* Groups.swift */,
 				2770238A29F5B5D600F0FC7E /* DataManager.swift */,
+				27426D3629F7D9680034C838 /* AddGroupView.swift */,
+				27426D3829F7D9740034C838 /* AddChatView.swift */,
 			);
 			path = GroupChats;
 			sourceTree = "<group>";
@@ -400,6 +406,8 @@
 				E85E19BC29F17BD40018D3E3 /* SettingsView.swift in Sources */,
 				E85E19B829F17BC20018D3E3 /* GroupView.swift in Sources */,
 				E85E198C29F17ABF0018D3E3 /* ProductiveApp.swift in Sources */,
+				27426D3729F7D9680034C838 /* AddGroupView.swift in Sources */,
+				27426D3929F7D9740034C838 /* AddChatView.swift in Sources */,
 				2770238B29F5B5D600F0FC7E /* DataManager.swift in Sources */,
 				57D8181029F6AF16001A14FA /* SignInView.swift in Sources */,
 				57D8180F29F6AF16001A14FA /* SignUpView.swift in Sources */,

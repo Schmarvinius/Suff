@@ -9,7 +9,7 @@ import SwiftUI
 
 struct Group: Identifiable {
     var id: String
-    var groupname: String
+    var name: String
     var userIDs: [String]
 }
 
