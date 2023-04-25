@@ -9,11 +9,12 @@ import SwiftUI
 
 struct ContentView: View {
     @StateObject var dataManager = DataManager()
+    @StateObject var dataManagerAch = DataManagerAchievements()
     var body: some View {
         TabView{
             DrinkView()
                 .tabItem{
-                    Label("Your Drinks", systemImage: "person")
+                    Label("Your Drinks", systemImage: "wineglass")
                 }
             GroupView()
                 .tabItem{
@@ -24,10 +25,11 @@ struct ContentView: View {
                 .tabItem{
                     Label("History", systemImage: "placeholdertext.fill")
                 }
-            SettingsView()
+            ProfileView()
                 .tabItem{
-                    Label("Settings", systemImage: "gear")
+                    Label("Profile", systemImage: "person")
                 }
+                .environmentObject(dataManagerAch)
         }
         .navigationBarBackButtonHidden(true)
         
@@ -36,6 +38,6 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        WelcomePageView()
+        ContentView()
     }
 }

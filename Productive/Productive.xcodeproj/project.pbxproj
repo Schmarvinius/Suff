@@ -40,6 +40,9 @@
 		57D8180F29F6AF16001A14FA /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D8180C29F6AF16001A14FA /* SignUpView.swift */; };
 		57D8181029F6AF16001A14FA /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D8180D29F6AF16001A14FA /* SignInView.swift */; };
 		57D8181329F6AF92001A14FA /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 57D8181229F6AF92001A14FA /* FirebaseAnalytics */; };
+		57D8181729F6B56C001A14FA /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D8181629F6B56C001A14FA /* ProfileView.swift */; };
+		57D8181929F7CCFB001A14FA /* DataManagerAchievements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D8181829F7CCFB001A14FA /* DataManagerAchievements.swift */; };
+		57D8181B29F80149001A14FA /* AchievementOverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D8181A29F80149001A14FA /* AchievementOverView.swift */; };
 		E85E198C29F17ABF0018D3E3 /* ProductiveApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E85E198B29F17ABF0018D3E3 /* ProductiveApp.swift */; };
 		E85E198E29F17ABF0018D3E3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E85E198D29F17ABF0018D3E3 /* ContentView.swift */; };
 		E85E199029F17AC00018D3E3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E85E198F29F17AC00018D3E3 /* Assets.xcassets */; };
@@ -78,6 +81,9 @@
 		57D8180B29F6AF16001A14FA /* WelcomePageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WelcomePageView.swift; path = AuthenticationPages/WelcomePageView.swift; sourceTree = "<group>"; };
 		57D8180C29F6AF16001A14FA /* SignUpView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignUpView.swift; path = AuthenticationPages/SignUpView.swift; sourceTree = "<group>"; };
 		57D8180D29F6AF16001A14FA /* SignInView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignInView.swift; path = AuthenticationPages/SignInView.swift; sourceTree = "<group>"; };
+		57D8181629F6B56C001A14FA /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		57D8181829F7CCFB001A14FA /* DataManagerAchievements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManagerAchievements.swift; sourceTree = "<group>"; };
+		57D8181A29F80149001A14FA /* AchievementOverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementOverView.swift; sourceTree = "<group>"; };
 		E85E198829F17ABF0018D3E3 /* Productive.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Productive.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E85E198B29F17ABF0018D3E3 /* ProductiveApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductiveApp.swift; sourceTree = "<group>"; };
 		E85E198D29F17ABF0018D3E3 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -165,6 +171,17 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		57D8181529F6B546001A14FA /* ProfileViews */ = {
+			isa = PBXGroup;
+			children = (
+				E85E19BB29F17BD40018D3E3 /* SettingsView.swift */,
+				57D8181629F6B56C001A14FA /* ProfileView.swift */,
+				57D8181829F7CCFB001A14FA /* DataManagerAchievements.swift */,
+				57D8181A29F80149001A14FA /* AchievementOverView.swift */,
+			);
+			path = ProfileViews;
+			sourceTree = "<group>";
+		};
 		E85E197F29F17ABF0018D3E3 = {
 			isa = PBXGroup;
 			children = (
@@ -189,6 +206,7 @@
 		E85E198A29F17ABF0018D3E3 /* Productive */ = {
 			isa = PBXGroup;
 			children = (
+				57D8181529F6B546001A14FA /* ProfileViews */,
 				57D8180A29F6AECA001A14FA /* Info.plist */,
 				57D8180D29F6AF16001A14FA /* SignInView.swift */,
 				57D8180C29F6AF16001A14FA /* SignUpView.swift */,
@@ -200,7 +218,6 @@
 				E85E199129F17AC00018D3E3 /* Preview Content */,
 				E85E19B529F17BB40018D3E3 /* DrinkView.swift */,
 				E85E19B929F17BCB0018D3E3 /* HistoryView.swift */,
-				E85E19BB29F17BD40018D3E3 /* SettingsView.swift */,
 				E85E19BD29F291880018D3E3 /* GoogleService-Info.plist */,
 			);
 			path = Productive;
@@ -398,12 +415,15 @@
 				E85E198E29F17ABF0018D3E3 /* ContentView.swift in Sources */,
 				E85E19BA29F17BCB0018D3E3 /* HistoryView.swift in Sources */,
 				E85E19BC29F17BD40018D3E3 /* SettingsView.swift in Sources */,
+				57D8181729F6B56C001A14FA /* ProfileView.swift in Sources */,
 				E85E19B829F17BC20018D3E3 /* GroupView.swift in Sources */,
+				57D8181B29F80149001A14FA /* AchievementOverView.swift in Sources */,
 				E85E198C29F17ABF0018D3E3 /* ProductiveApp.swift in Sources */,
 				2770238B29F5B5D600F0FC7E /* DataManager.swift in Sources */,
 				57D8181029F6AF16001A14FA /* SignInView.swift in Sources */,
 				57D8180F29F6AF16001A14FA /* SignUpView.swift in Sources */,
 				57D8180E29F6AF16001A14FA /* WelcomePageView.swift in Sources */,
+				57D8181929F7CCFB001A14FA /* DataManagerAchievements.swift in Sources */,
 				27B0D22A29F581AE001203E8 /* Groups.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
