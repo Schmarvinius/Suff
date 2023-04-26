@@ -40,19 +40,8 @@ struct SettingsView: View {
                     
                 }
                 
-                
-                
             }
-            
-                
-                //.navigationBarItems(leading: NavigationLink(destination: ProfileView(), label: {
-                  //  HStack{
-                 //       Image(systemName: "chevron.backward")
-                  //      Text("Profile")
-                   // }
-            //}))
         }
-        //.navigationBarBackButtonHidden(true)
     }
 }
 

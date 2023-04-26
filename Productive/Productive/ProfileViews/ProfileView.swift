@@ -34,8 +34,6 @@ struct ProfileView: View {
                                 .frame(width: 120, height: 120)
                                 .scaledToFit()
                         }
-                            
-                        
                             VStack (alignment: .leading){
                                 Text(dataManagerAch.firstname + " " + dataManagerAch.lastname)
                                     .font(.system(size: 30))
@@ -80,33 +78,23 @@ struct ProfileView: View {
                     ScrollView{
                         LazyVGrid(columns: items, spacing: 20) {
                             ForEach(dataManagerAch.achievements, id: \.id) { achievement in
-                                VStack{
-                                    Image(systemName: achievement.img)
-                                    Text(achievement.name)
-                                }
+                                
+                                    NavigationLink(destination: AchievementOverView(achievement: achievement)){
+                                        VStack {
+                                            Image(systemName: achievement.img)
+                                            Text(achievement.name)
+                                        }
+                                    }
+                                
                             }
                         }
                     }
                     
                     Spacer()
-                    /*
-                    List(dataManagerAch.achievements, id: \.id){achievement in
-                        NavigationLink(destination: AchievementOverView(achievement: achievement)) {
-                            HStack {
-                                Image(systemName: achievement.img)
-                                    .font(.system(size:20))
-                                .foregroundColor(Color.black)
-                                Text(achievement.name)
-                            }
-                        }
-                    }*/
                      
                 }
                 .padding(.all)
                 .navigationBarBackButtonHidden(true)
-                /*.navigationBarItems(leading: Text("Your Profile")
-                    .font(.system(size: 20))
-                    .bold()) */
                 .navigationTitle("Profile")
                 .navigationBarTitleDisplayMode(.inline)
                 .navigationBarItems(trailing: Button(action: {}, label: {
@@ -121,18 +109,6 @@ struct ProfileView: View {
     
     
     }
-
-struct AchievementView : View {
-    
-    @State private var ach : Achievement
-    init(achievement: Achievement){
-        self.ach = achievement
-    }
-    
-    var body: some View {
-        Text(ach.name)
-    }
-}
 
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
