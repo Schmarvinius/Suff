@@ -9,6 +9,8 @@ import SwiftUI
 
 struct GroupView: View {
     @State var isGroup = false
+    @State var showAddChat = false
+    @State var showAddGroup = false
     @EnvironmentObject var dataManager: DataManager
     @EnvironmentObject var addDataManager: AddDataManager
     
@@ -31,16 +33,40 @@ struct GroupView: View {
             }
             .navigationTitle(isGroup ? "Groups" : "Chats")
             .navigationBarTitleDisplayMode(.inline)
-            .navigationBarItems(trailing: HStack{
-                NavigationLink("AddGroup", destination: AddGroupView())
-                    .environmentObject(dataManager)
-                    .environmentObject(addDataManager)
-                NavigationLink("AddChat", destination: AddChatView())
-                    .environmentObject(dataManager)
-                    .environmentObject(addDataManager)
+            .navigationBarItems(trailing: Button(action: {}, label: {
+                if isGroup{
+                    NavigationLink(destination: AddGroupView()) {
+                        Image(systemName: "plus")
+                            .foregroundColor(.black)
+                            .font(.system(size: 16))
+                            .bold()
+                    }
+                } else{
+                    NavigationLink(destination: AddChatView()) {
+                        Image(systemName: "plus")
+                            .foregroundColor(.black)
+                            .font(.system(size: 16))
+                            .bold()
+                    }
+                }
+            }))
+                
+                
+                
+                
+                /*if(isGroup){
+                    NavigationLink("+", destination: AddGroupView())
+                        .environmentObject(dataManager)
+                        .environmentObject(addDataManager)
+                } else{
+                    NavigationLink("+", destination: AddChatView())
+                        .environmentObject(dataManager)
+                        .environmentObject(addDataManager)
+                }*/
+                
                
                 
-            })
+            
         }
         
         
@@ -48,11 +74,7 @@ struct GroupView: View {
     var contentChats: some View {
         List(dataManager.chats, id: \.id){chat in
             Button(action:{
-                if isGroup{
-                    print("Hi")
-                }else{
-                    print("SKR SKR IN MEINEM AUDI")
-                }
+                print("SKR SKR IN MEINEM AUDI")
             }, label:{
                 HStack{
                     Image(systemName: "person.fill")
@@ -68,11 +90,7 @@ struct GroupView: View {
     var contentGroups: some View {
         List(dataManager.groups, id: \.id){group in
             Button(action:{
-                if isGroup{
-                    print("Hi")
-                }else{
-                    print("Hi")
-                }
+                print("HI")
             }, label:{
                 HStack{
                     Image(systemName: "person.fill")
