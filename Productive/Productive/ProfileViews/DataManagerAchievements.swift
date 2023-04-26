@@ -18,7 +18,7 @@ class DataManagerAchievements: ObservableObject {
     @Published var height: String = ""
     @Published var image: UIImage?
     @Published var oldImage: UIImage?
-    
+    @Published var path: String = ""
     
     init() {
         fetchAchievements()
@@ -40,10 +40,10 @@ class DataManagerAchievements: ObservableObject {
                 self.lastname = data["lastname"] as? String ?? ""
                 self.weight = data["weight"] as? String ?? ""
                 self.height = data["height"] as? String ?? ""
-                let path = data["pic"] as! String
+                self.path = data["pic"] as! String
                 
                 let storageRef = Storage.storage().reference()
-                let fileref = storageRef.child(path)
+                let fileref = storageRef.child(self.path)
                 fileref.getData(maxSize: 5 * 1024 * 1024) { dat, err in
                     if err == nil && dat != nil {
                         self.image = UIImage(data: dat!)
@@ -66,7 +66,17 @@ class DataManagerAchievements: ObservableObject {
         //specify file name
         let path = "ProfilePictures/\(UUID().uuidString).jpg"
         let fileRef = storageRef.child(path)
+        
+        
+        
         if self.oldImage?.jpegData(compressionQuality: 0.8) != self.image?.jpegData(compressionQuality: 0.8) {
+            let oldfileRef = storageRef.child(self.path)
+            oldfileRef.delete { err in
+                if err != nil {
+                    print(err!.localizedDescription)
+                }
+            }
+            self.path = path
             fileRef.putData(imageData!, metadata: nil) { metadata, error in
                 if error == nil && metadata != nil {
                     let id = Auth.auth().currentUser!.uid
