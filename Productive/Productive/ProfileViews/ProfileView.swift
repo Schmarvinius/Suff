@@ -13,7 +13,7 @@ struct ProfileView: View {
     @State private var email = Auth.auth().currentUser?.email as? String ?? ""
     @State private var showPopover = false
     
-    @State private var items: [GridItem] = Array(repeating: .init(.flexible()), count: 1)
+    @State private var items: [GridItem] = Array(repeating: .init(.flexible()), count: 3)
     
     @EnvironmentObject var dataManagerAch : DataManagerAchievements
    
@@ -21,12 +21,20 @@ struct ProfileView: View {
             NavigationView(){
                 VStack (alignment: .leading)  {
                     HStack (alignment: .top) {
-                            
+                        if(dataManagerAch.image == nil) {
                             Image("IconTestDoner")
                                 .resizable()
                                 .clipShape(Circle())
                                 .frame(width: 120, height: 120)
                                 .scaledToFit()
+                        } else {
+                            Image(uiImage: dataManagerAch.image!)
+                                .resizable()
+                                .clipShape(Circle())
+                                .frame(width: 120, height: 120)
+                                .scaledToFit()
+                        }
+                            
                         
                             VStack (alignment: .leading){
                                 Text(dataManagerAch.firstname + " " + dataManagerAch.lastname)
@@ -42,7 +50,7 @@ struct ProfileView: View {
                         .foregroundColor(.black)
                     
                     HStack {
-                        Button(action: {}) {
+                        NavigationLink(destination: EditProfileView()) {
                             Text("Edit Profile")
                                 .frame(minWidth: 0, maxWidth: .infinity)
                                 .font(.system(size: 16))
@@ -69,11 +77,19 @@ struct ProfileView: View {
                     Text("Achievements")
                         .bold()
                         .font(.system(size: 20))
-                    /*LazyVGrid(columns: items, spacing: 20) {
-                        ForEach(dataManagerAch.achievements, id: \.id) { achievement in
-                            Label(achievement.name, systemImage: achievement.img)
+                    ScrollView{
+                        LazyVGrid(columns: items, spacing: 20) {
+                            ForEach(dataManagerAch.achievements, id: \.id) { achievement in
+                                VStack{
+                                    Image(systemName: achievement.img)
+                                    Text(achievement.name)
+                                }
+                            }
                         }
-                    } */
+                    }
+                    
+                    Spacer()
+                    /*
                     List(dataManagerAch.achievements, id: \.id){achievement in
                         NavigationLink(destination: AchievementOverView(achievement: achievement)) {
                             HStack {
@@ -83,20 +99,20 @@ struct ProfileView: View {
                                 Text(achievement.name)
                             }
                         }
-                    }
+                    }*/
                      
                 }
                 .padding(.all)
                 .navigationBarBackButtonHidden(true)
-                .navigationBarItems(leading: Text("Your Profile")
+                /*.navigationBarItems(leading: Text("Your Profile")
                     .font(.system(size: 20))
-                    .bold())
+                    .bold()) */
+                .navigationTitle("Profile")
+                .navigationBarTitleDisplayMode(.inline)
                 .navigationBarItems(trailing: Button(action: {}, label: {
                     NavigationLink(destination: SettingsView()) {
                         Image(systemName: "gear")
                             .foregroundColor(.black)
-                            .font(.system(size: 16))
-                            .bold()
                     }
                 }))
             }

@@ -39,6 +39,7 @@
 		2770238729F5AF5B00F0FC7E /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 2770238629F5AF5B00F0FC7E /* FirebaseStorageCombine-Community */; };
 		2770238B29F5B5D600F0FC7E /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2770238A29F5B5D600F0FC7E /* DataManager.swift */; };
 		27B0D22A29F581AE001203E8 /* Groups.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B0D22929F581AE001203E8 /* Groups.swift */; };
+		5786968B29F9580100F1762B /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5786968A29F9580100F1762B /* EditProfileView.swift */; };
 		57D8180E29F6AF16001A14FA /* WelcomePageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D8180B29F6AF16001A14FA /* WelcomePageView.swift */; };
 		57D8180F29F6AF16001A14FA /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D8180C29F6AF16001A14FA /* SignUpView.swift */; };
 		57D8181029F6AF16001A14FA /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D8180D29F6AF16001A14FA /* SignInView.swift */; };
@@ -88,6 +89,7 @@
 		27426D3B29F92AFB0034C838 /* AddDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDataManager.swift; sourceTree = "<group>"; };
 		2770238A29F5B5D600F0FC7E /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		27B0D22929F581AE001203E8 /* Groups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Groups.swift; sourceTree = "<group>"; };
+		5786968A29F9580100F1762B /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
 		57D8180A29F6AECA001A14FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		57D8180B29F6AF16001A14FA /* WelcomePageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WelcomePageView.swift; path = AuthenticationPages/WelcomePageView.swift; sourceTree = "<group>"; };
 		57D8180C29F6AF16001A14FA /* SignUpView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignUpView.swift; path = AuthenticationPages/SignUpView.swift; sourceTree = "<group>"; };
@@ -205,6 +207,7 @@
 				57D8181629F6B56C001A14FA /* ProfileView.swift */,
 				57D8181829F7CCFB001A14FA /* DataManagerAchievements.swift */,
 				57D8181A29F80149001A14FA /* AchievementOverView.swift */,
+				5786968A29F9580100F1762B /* EditProfileView.swift */,
 			);
 			path = ProfileViews;
 			sourceTree = "<group>";
@@ -485,6 +488,7 @@
 				57D8181029F6AF16001A14FA /* SignInView.swift in Sources */,
 				E897AF3E29F94AA4005B9CD2 /* DrinkDB.swift in Sources */,
 				57D8180F29F6AF16001A14FA /* SignUpView.swift in Sources */,
+				5786968B29F9580100F1762B /* EditProfileView.swift in Sources */,
 				E897AF4A29F94AF5005B9CD2 /* DetailView.swift in Sources */,
 				57D8180E29F6AF16001A14FA /* WelcomePageView.swift in Sources */,
 				57D8181929F7CCFB001A14FA /* DataManagerAchievements.swift in Sources */,
