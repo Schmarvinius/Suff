@@ -72,7 +72,7 @@ struct AddGroupView: View {
                     TextField("Groupname", text: $groupName)
                         .foregroundColor(Color.black)
                         .textFieldStyle(.plain)
-                        .placeholder(when: groupID.isEmpty) {
+                        .placeholder(when: groupName.isEmpty) {
                             Text("Groupname")
                                 .foregroundColor(.black)
                                 .bold()
@@ -84,8 +84,8 @@ struct AddGroupView: View {
                     TextField("Description", text: $description)
                         .foregroundColor(Color.black)
                         .textFieldStyle(.plain)
-                        .placeholder(when: groupID.isEmpty) {
-                            Text("Group-ID")
+                        .placeholder(when: description.isEmpty) {
+                            Text("Description")
                                 .foregroundColor(.black)
                                 .bold()
                         }
@@ -156,7 +156,8 @@ struct AddGroupView: View {
         groupID = ""
         
         //Get user groups
-        let user = db.collection("user")
+        let qu = Firestore.firestore().collection("user").document(uid ?? "")
+        print(qu)
         
         
         
@@ -184,6 +185,7 @@ extension View{
             }
     }
 }
+
 
 
 

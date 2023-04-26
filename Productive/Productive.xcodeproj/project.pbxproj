@@ -35,6 +35,7 @@
 		E80E686529F30EB300047961 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80E686429F30EB300047961 /* DetailView.swift */; };
 		27426D3729F7D9680034C838 /* AddGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27426D3629F7D9680034C838 /* AddGroupView.swift */; };
 		27426D3929F7D9740034C838 /* AddChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27426D3829F7D9740034C838 /* AddChatView.swift */; };
+		27426D3C29F92AFB0034C838 /* AddDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27426D3B29F92AFB0034C838 /* AddDataManager.swift */; };
 		2770235329F5AF5B00F0FC7E /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		2770235529F5AF5B00F0FC7E /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = 2770235429F5AF5B00F0FC7E /* FirebaseAnalyticsOnDeviceConversion */; };
 		2770235729F5AF5B00F0FC7E /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 2770235629F5AF5B00F0FC7E /* FirebaseAnalyticsSwift */; };
@@ -110,6 +111,7 @@
 		E80E686429F30EB300047961 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		27426D3629F7D9680034C838 /* AddGroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGroupView.swift; sourceTree = "<group>"; };
 		27426D3829F7D9740034C838 /* AddChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddChatView.swift; sourceTree = "<group>"; };
+		27426D3B29F92AFB0034C838 /* AddDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDataManager.swift; sourceTree = "<group>"; };
 		2770238A29F5B5D600F0FC7E /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		27B0D22929F581AE001203E8 /* Groups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Groups.swift; sourceTree = "<group>"; };
 		57D8180A29F6AECA001A14FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -211,11 +213,10 @@
 		27B0D22029F30A17001203E8 /* GroupChats */ = {
 			isa = PBXGroup;
 			children = (
+				27426D3D29F92B6A0034C838 /* Add */,
 				E85E19B729F17BC20018D3E3 /* GroupView.swift */,
 				27B0D22929F581AE001203E8 /* Groups.swift */,
 				2770238A29F5B5D600F0FC7E /* DataManager.swift */,
-				27426D3629F7D9680034C838 /* AddGroupView.swift */,
-				27426D3829F7D9740034C838 /* AddChatView.swift */,
 			);
 			path = GroupChats;
 			sourceTree = "<group>";
@@ -472,6 +473,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E85E19B629F17BB40018D3E3 /* DrinkView.swift in Sources */,
+				27426D3C29F92AFB0034C838 /* AddDataManager.swift in Sources */,
 				E85E198E29F17ABF0018D3E3 /* ContentView.swift in Sources */,
 				E873EAF329F7C1B500336B7A /* drinks.swift in Sources */,
 				E873EAEF29F7AD4700336B7A /* AddView.swift in Sources */,
