@@ -13,11 +13,12 @@ struct SettingsView: View {
         case german, english, spanish, latin
         var id: Self { self }
     }
-    @State private var selectedLanguage: Language = .german
+    @State private var selectedLanguage: Language = .english
     
     
     
     var body: some View {
+        
         NavigationView {
             VStack {
                 Form {
