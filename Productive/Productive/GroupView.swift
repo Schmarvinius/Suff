@@ -51,7 +51,7 @@ struct GroupView: View {
                 if isGroup{
                     print("Hi")
                 }else{
-                    print("Hi")
+                    print("SKR SKR IN MEINEM AUDI")
                 }
             }, label:{
                 HStack{

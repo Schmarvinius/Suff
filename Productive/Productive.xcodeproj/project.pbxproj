@@ -7,32 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E80E683029F2E16900047961 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = E80E682F29F2E16900047961 /* FirebaseAnalyticsOnDeviceConversion */; };
-		E80E683229F2E16900047961 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = E80E683129F2E16900047961 /* FirebaseAnalyticsWithoutAdIdSupport */; };
-		E80E683429F2E16900047961 /* FirebaseAppCheck in Frameworks */ = {isa = PBXBuildFile; productRef = E80E683329F2E16900047961 /* FirebaseAppCheck */; };
-		E80E683629F2E16900047961 /* FirebaseAppDistribution-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = E80E683529F2E16900047961 /* FirebaseAppDistribution-Beta */; };
-		E80E683829F2E16900047961 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = E80E683729F2E16900047961 /* FirebaseAuth */; };
-		E80E683A29F2E16900047961 /* FirebaseAuthCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = E80E683929F2E16900047961 /* FirebaseAuthCombine-Community */; };
-		E80E683C29F2E16900047961 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = E80E683B29F2E16900047961 /* FirebaseCrashlytics */; };
-		E80E683E29F2E16900047961 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = E80E683D29F2E16900047961 /* FirebaseDatabase */; };
-		E80E684029F2E16900047961 /* FirebaseDatabaseSwift in Frameworks */ = {isa = PBXBuildFile; productRef = E80E683F29F2E16900047961 /* FirebaseDatabaseSwift */; };
-		E80E684229F2E16900047961 /* FirebaseDynamicLinks in Frameworks */ = {isa = PBXBuildFile; productRef = E80E684129F2E16900047961 /* FirebaseDynamicLinks */; };
-		E80E684429F2E16900047961 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = E80E684329F2E16900047961 /* FirebaseFirestore */; };
-		E80E684629F2E16900047961 /* FirebaseFirestoreCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = E80E684529F2E16900047961 /* FirebaseFirestoreCombine-Community */; };
-		E80E684829F2E16900047961 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = E80E684729F2E16900047961 /* FirebaseFirestoreSwift */; };
-		E80E684A29F2E16900047961 /* FirebaseFunctions in Frameworks */ = {isa = PBXBuildFile; productRef = E80E684929F2E16900047961 /* FirebaseFunctions */; };
-		E80E684C29F2E16900047961 /* FirebaseFunctionsCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = E80E684B29F2E16900047961 /* FirebaseFunctionsCombine-Community */; };
-		E80E684E29F2E16900047961 /* FirebaseInAppMessaging-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = E80E684D29F2E16900047961 /* FirebaseInAppMessaging-Beta */; };
-		E80E685029F2E16900047961 /* FirebaseInAppMessagingSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = E80E684F29F2E16900047961 /* FirebaseInAppMessagingSwift-Beta */; };
-		E80E685229F2E16900047961 /* FirebaseInstallations in Frameworks */ = {isa = PBXBuildFile; productRef = E80E685129F2E16900047961 /* FirebaseInstallations */; };
-		E80E685429F2E16900047961 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = E80E685329F2E16900047961 /* FirebaseMessaging */; };
-		E80E685629F2E16900047961 /* FirebaseMLModelDownloader in Frameworks */ = {isa = PBXBuildFile; productRef = E80E685529F2E16900047961 /* FirebaseMLModelDownloader */; };
-		E80E685829F2E16900047961 /* FirebasePerformance in Frameworks */ = {isa = PBXBuildFile; productRef = E80E685729F2E16900047961 /* FirebasePerformance */; };
-		E80E685A29F2E16900047961 /* FirebaseRemoteConfig in Frameworks */ = {isa = PBXBuildFile; productRef = E80E685929F2E16900047961 /* FirebaseRemoteConfig */; };
-		E80E685C29F2E16900047961 /* FirebaseRemoteConfigSwift in Frameworks */ = {isa = PBXBuildFile; productRef = E80E685B29F2E16900047961 /* FirebaseRemoteConfigSwift */; };
-		E80E685E29F2E16900047961 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = E80E685D29F2E16900047961 /* FirebaseStorage */; };
-		E80E686029F2E16900047961 /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = E80E685F29F2E16900047961 /* FirebaseStorageCombine-Community */; };
-		E80E686529F30EB300047961 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80E686429F30EB300047961 /* DetailView.swift */; };
 		27426D3729F7D9680034C838 /* AddGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27426D3629F7D9680034C838 /* AddGroupView.swift */; };
 		27426D3929F7D9740034C838 /* AddChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27426D3829F7D9740034C838 /* AddChatView.swift */; };
 		27426D3C29F92AFB0034C838 /* AddDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27426D3B29F92AFB0034C838 /* AddDataManager.swift */; };
@@ -81,12 +55,6 @@
 		E85E19BA29F17BCB0018D3E3 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E85E19B929F17BCB0018D3E3 /* HistoryView.swift */; };
 		E85E19BC29F17BD40018D3E3 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E85E19BB29F17BD40018D3E3 /* SettingsView.swift */; };
 		E85E19BE29F291880018D3E3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E85E19BD29F291880018D3E3 /* GoogleService-Info.plist */; };
-		E85E19C129F293690018D3E3 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = E85E19C029F293690018D3E3 /* FirebaseAnalytics */; };
-		E85E19C329F293690018D3E3 /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = E85E19C229F293690018D3E3 /* FirebaseAnalyticsSwift */; };
-		E873EAED29F6BC5900336B7A /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E873EAEC29F6BC5900336B7A /* ImagePicker.swift */; };
-		E873EAEF29F7AD4700336B7A /* AddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E873EAEE29F7AD4700336B7A /* AddView.swift */; };
-		E873EAF129F7BF2100336B7A /* drinkDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = E873EAF029F7BF2100336B7A /* drinkDB.swift */; };
-		E873EAF329F7C1B500336B7A /* drinks.swift in Sources */ = {isa = PBXBuildFile; fileRef = E873EAF229F7C1B500336B7A /* drinks.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -107,8 +75,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		E80E682B29F2C38B00047961 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		E80E686429F30EB300047961 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		27426D3629F7D9680034C838 /* AddGroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGroupView.swift; sourceTree = "<group>"; };
 		27426D3829F7D9740034C838 /* AddChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddChatView.swift; sourceTree = "<group>"; };
 		27426D3B29F92AFB0034C838 /* AddDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDataManager.swift; sourceTree = "<group>"; };
@@ -132,11 +98,7 @@
 		E85E19B729F17BC20018D3E3 /* GroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GroupView.swift; path = ../GroupView.swift; sourceTree = "<group>"; };
 		E85E19B929F17BCB0018D3E3 /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
 		E85E19BB29F17BD40018D3E3 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
-		E85E19BD29F291880018D3E3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
-		E873EAEC29F6BC5900336B7A /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
-		E873EAEE29F7AD4700336B7A /* AddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddView.swift; sourceTree = "<group>"; };
-		E873EAF029F7BF2100336B7A /* drinkDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = drinkDB.swift; sourceTree = "<group>"; };
-		E873EAF229F7C1B500336B7A /* drinks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = drinks.swift; sourceTree = "<group>"; };
+		E85E19BD29F291880018D3E3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; name = "GoogleService-Info.plist"; path = "../../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -192,24 +154,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		E80091DB29F7FFE800AD10B4 /* utils */ = {
+		27426D3D29F92B6A0034C838 /* Add */ = {
 			isa = PBXGroup;
 			children = (
-				E873EAEC29F6BC5900336B7A /* ImagePicker.swift */,
+				27426D3B29F92AFB0034C838 /* AddDataManager.swift */,
+				27426D3629F7D9680034C838 /* AddGroupView.swift */,
+				27426D3829F7D9740034C838 /* AddChatView.swift */,
 			);
-			path = utils;
+			path = Add;
 			sourceTree = "<group>";
 		};
-		E80091DC29F8004E00AD10B4 /* db */ = {
-			isa = PBXGroup;
-			children = (
-				E873EAF029F7BF2100336B7A /* drinkDB.swift */,
-				E873EAF229F7C1B500336B7A /* drinks.swift */,
-			);
-			path = db;
-			sourceTree = "<group>";
-		};
-		E80E682E29F2E16900047961 /* Frameworks */ = {
 		27B0D22029F30A17001203E8 /* GroupChats */ = {
 			isa = PBXGroup;
 			children = (
@@ -228,16 +182,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		E80E686329F30E9B00047961 /* DrinkView */ = {
-			isa = PBXGroup;
-			children = (
-				E85E19B529F17BB40018D3E3 /* DrinkView.swift */,
-				E80E686429F30EB300047961 /* DetailView.swift */,
-				E873EAEE29F7AD4700336B7A /* AddView.swift */,
-			);
-			path = DrinkView;
-			sourceTree = "<group>";
-		};
 		E85E197F29F17ABF0018D3E3 = {
 			isa = PBXGroup;
 			children = (
@@ -245,7 +189,7 @@
 				E85E199B29F17AC00018D3E3 /* ProductiveTests */,
 				E85E19A529F17AC00018D3E3 /* ProductiveUITests */,
 				E85E198929F17ABF0018D3E3 /* Products */,
-				E80E682E29F2E16900047961 /* Frameworks */,
+				57D8181129F6AF92001A14FA /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -262,10 +206,6 @@
 		E85E198A29F17ABF0018D3E3 /* Productive */ = {
 			isa = PBXGroup;
 			children = (
-				E80091DC29F8004E00AD10B4 /* db */,
-				E80091DB29F7FFE800AD10B4 /* utils */,
-				E80E686329F30E9B00047961 /* DrinkView */,
-				E80E682B29F2C38B00047961 /* Info.plist */,
 				57D8180A29F6AECA001A14FA /* Info.plist */,
 				57D8180D29F6AF16001A14FA /* SignInView.swift */,
 				57D8180C29F6AF16001A14FA /* SignUpView.swift */,
@@ -275,7 +215,6 @@
 				E85E198D29F17ABF0018D3E3 /* ContentView.swift */,
 				E85E198F29F17AC00018D3E3 /* Assets.xcassets */,
 				E85E199129F17AC00018D3E3 /* Preview Content */,
-				E85E19B729F17BC20018D3E3 /* GroupView.swift */,
 				E85E19B529F17BB40018D3E3 /* DrinkView.swift */,
 				E85E19B929F17BCB0018D3E3 /* HistoryView.swift */,
 				E85E19BB29F17BD40018D3E3 /* SettingsView.swift */,
@@ -475,13 +414,8 @@
 				E85E19B629F17BB40018D3E3 /* DrinkView.swift in Sources */,
 				27426D3C29F92AFB0034C838 /* AddDataManager.swift in Sources */,
 				E85E198E29F17ABF0018D3E3 /* ContentView.swift in Sources */,
-				E873EAF329F7C1B500336B7A /* drinks.swift in Sources */,
-				E873EAEF29F7AD4700336B7A /* AddView.swift in Sources */,
 				E85E19BA29F17BCB0018D3E3 /* HistoryView.swift in Sources */,
-				E873EAF129F7BF2100336B7A /* drinkDB.swift in Sources */,
-				E80E686529F30EB300047961 /* DetailView.swift in Sources */,
 				E85E19BC29F17BD40018D3E3 /* SettingsView.swift in Sources */,
-				E873EAED29F6BC5900336B7A /* ImagePicker.swift in Sources */,
 				E85E19B829F17BC20018D3E3 /* GroupView.swift in Sources */,
 				E85E198C29F17ABF0018D3E3 /* ProductiveApp.swift in Sources */,
 				27426D3729F7D9680034C838 /* AddGroupView.swift in Sources */,
@@ -649,7 +583,6 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Productive/Preview Content\"";
-				DEVELOPMENT_TEAM = V8JDUND5G4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Productive/Info.plist;
@@ -682,7 +615,6 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Productive/Preview Content\"";
-				DEVELOPMENT_TEAM = V8JDUND5G4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Productive/Info.plist;
