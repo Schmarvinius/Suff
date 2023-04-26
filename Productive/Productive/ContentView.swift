@@ -9,28 +9,29 @@ import SwiftUI
 
 struct ContentView: View {
     @StateObject var dataManager = DataManager()
+    @StateObject var drinksDB = drinkDB()
     var body: some View {
-        TabView{
-            DrinkView()
-                .tabItem{
-                    Label("Your Drinks", systemImage: "person")
-                }
-            GroupView()
-                .tabItem{
-                    Label("Group", systemImage: "person.3")
-                }
-                .environmentObject(dataManager)
-            HistoryView()
-                .tabItem{
-                    Label("History", systemImage: "placeholdertext.fill")
-                }
-            SettingsView()
-                .tabItem{
-                    Label("Settings", systemImage: "gear")
-                }
-        }
-        .navigationBarBackButtonHidden(true)
-        
+            TabView{
+                DrinkView()
+                    .tabItem{
+                        Label("Your Drinks", systemImage: "wineglass")
+                    }
+                    .environmentObject(drinksDB)
+                GroupView()
+                    .tabItem{
+                        Label("Group", systemImage: "person.3")
+                    }
+                    .environmentObject(dataManager)
+                HistoryView()
+                    .tabItem{
+                        Label("History", systemImage: "placeholdertext.fill")
+                    }
+                SettingsView()
+                    .tabItem{
+                        Label("Profile", systemImage: "person")
+                    }
+            }
+            .navigationBarBackButtonHidden(true)
     }
 }
 
