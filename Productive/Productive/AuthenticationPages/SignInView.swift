@@ -10,8 +10,8 @@ import FirebaseAuth
 
 
 struct SignInView: View {
-    @State private var email: String = ""
-    @State private var password: String = ""
+    @State public var email: String = "till@till.de"
+    @State private var password: String = "123456"
     @State private var loggedIn = false
     
     var body: some View {
