@@ -16,6 +16,8 @@ struct AddGroupView: View {
     @State private var shouldShowImagePicker = false
     @State private var width : CGFloat? = 350
     @State private var image: UIImage?
+    @EnvironmentObject var addDataManager: AddDataManager
+    @EnvironmentObject var dataManager: DataManager
 
     var body: some View {
         NavigationView{
@@ -38,7 +40,7 @@ struct AddGroupView: View {
                     
                     
                 Button {
-                    joingroup()
+                    addDataManager.addGroupWithID(groupID: groupID, dataManager: dataManager)
                 } label: {
                     Text("Join")
                         .bold()
@@ -103,10 +105,7 @@ struct AddGroupView: View {
                                     .fill(.linearGradient(colors: [.gray, .gray], startPoint: .top, endPoint: .bottomTrailing))
                             )
                             .foregroundColor(.white)
-                        
                     }
-                    
-
                 }
                 .fullScreenCover(isPresented: $shouldShowImagePicker, onDismiss: nil) {
                    // ImagePicker(image: $image)
@@ -117,58 +116,6 @@ struct AddGroupView: View {
             
         }
         .background(.gray)
-    }
-    
-    func joingroup (){
-        let db = Firestore.firestore()
-        let account = Auth.auth().currentUser
-        let uid = account?.uid
-        
-        // Controll if Group-ID exists
-        let ref = db.collection("group")
-        let group = ref.whereField("id", isEqualTo: groupID)
-        group.getDocuments(){snapshot, error in
-            guard error == nil else {
-                print(error!.localizedDescription)
-                return
-            }
-            if let snapshot = snapshot {
-                let data = snapshot.documents[0].data()
-                let gID = data["id"] as? String ?? ""
-                var users : [String] = data["users"] as? [String] ?? [""]
-                users.append(account?.email as? String ?? "")
-                
-                Firestore.firestore().collection("group").document(gID).updateData([
-                    "users": users
-                ]){ err in
-                    if let err = err {
-                        print("Error updating document: \(err)")
-                    } else {
-                        print("Document successfully updated")
-                    }
-                }
-                
-                
-                
-            }
-        }
-        //Clear Textfield
-        groupID = ""
-        
-        //Get user groups
-        let qu = Firestore.firestore().collection("user").document(uid ?? "")
-        print(qu)
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
     }
 }
 

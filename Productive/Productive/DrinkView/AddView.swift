@@ -166,7 +166,7 @@ struct AddView: View {
         let fileRef = storageRef.child(path)
         
         
-        let uploadTask = fileRef.putData(imageData!, metadata: nil) { metadata, error in
+        fileRef.putData(imageData!, metadata: nil) { metadata, error in
             if error == nil && metadata != nil {
                 let db = Firestore.firestore()
                 db.collection("drink").document().setData([
