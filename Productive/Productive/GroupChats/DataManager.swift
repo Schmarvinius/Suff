@@ -17,11 +17,54 @@ class DataManager: ObservableObject {
     @Published var friends: [User] = []
     @Published var chats: [User] = []
     @Published var groups: [Group] = []
+    @Published var attribut: String = ""
+    @Published var field : [String] = [""]
     init() {
         fetchFriends()
         fetchGroup()
         fetchChats()
     }
+    func getField(collection: String, dbfield : String, query : String, field : String){
+        let db = Firestore.firestore()
+        let ref = db.collection(collection)
+        ref.whereField(dbfield, isEqualTo: query)
+            .getDocuments(){snapshot, error in
+                guard error == nil else {
+                    print(error!.localizedDescription)
+                    return
+                }
+                
+                if let snapshot = snapshot {
+                    for document in snapshot.documents{
+                        let data = document.data()
+                        self.field = data[field] as? [String] ?? [""]
+                    }
+                }
+            }
+    }
+    
+    func getAttribut(collection: String, dbfield : String, query : String, field : String){
+        let db = Firestore.firestore()
+        let ref = db.collection(collection)
+        ref.whereField(dbfield, isEqualTo: query)
+            .getDocuments(){snapshot, error in
+                guard error == nil else {
+                    print(error!.localizedDescription)
+                    return
+                }
+                
+                if let snapshot = snapshot {
+                    for document in snapshot.documents{
+                        let data = document.data()
+                        
+                        self.attribut = data[field] as? String ?? ""
+                    }
+                }
+            }
+    }
+
+    
+    
     func fetchGroup(){
         let user = Auth.auth().currentUser
         if let user = user {
