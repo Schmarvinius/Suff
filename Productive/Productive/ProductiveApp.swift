@@ -20,15 +20,13 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 
 @main
 struct ProductiveApp: App {
-    
-    @StateObject var drinkdb = drinkDB() 
-    
-    init() {
-        FirebaseApp.configure()
-    }
+
+
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
+    @StateObject var drinkdb = drinkDB()
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            WelcomePageView()
         }
     }
 }

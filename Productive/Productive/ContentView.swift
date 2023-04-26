@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject var dataManager = DataManager()
     @StateObject var drinksDB = drinkDB()
     var body: some View {
             TabView{
@@ -20,6 +21,7 @@ struct ContentView: View {
                     .tabItem{
                         Label("Group", systemImage: "person.3")
                     }
+                    .environmentObject(dataManager)
                 HistoryView()
                     .tabItem{
                         Label("History", systemImage: "placeholdertext.fill")
@@ -29,11 +31,12 @@ struct ContentView: View {
                         Label("Profile", systemImage: "person")
                     }
             }
+            .navigationBarBackButtonHidden(true)
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        WelcomePageView()
     }
 }

@@ -8,13 +8,83 @@
 import SwiftUI
 
 struct GroupView: View {
+    @State var isGroup = false
+    @EnvironmentObject var dataManager: DataManager
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationView{
+            VStack{
+                Picker(selection: $isGroup, label: Text("Picker here")){
+                    Text("Groups")
+                        .tag(true)
+                    Text("Chats")
+                        .tag(false)
+                }.pickerStyle(SegmentedPickerStyle())
+                    .padding()
+                
+                if isGroup {
+                    contentGroups
+                }else{
+                    contentChats
+                }
+            }
+            .navigationTitle(isGroup ? "Groups" : "Chats")
+            .navigationBarTitleDisplayMode(.inline)
+            .navigationBarItems(trailing: HStack{
+                NavigationLink("AddGroup", destination: AddGroupView())
+                    .environmentObject(dataManager)
+                NavigationLink("AddChat", destination: AddChatView())
+                    .environmentObject(dataManager)
+               
+                
+            })
+        }
+        
+        
+    }
+    var contentChats: some View {
+        List(dataManager.chats, id: \.id){chat in
+            Button(action:{
+                if isGroup{
+                    print("Hi")
+                }else{
+                    print("Hi")
+                }
+            }, label:{
+                HStack{
+                    Image(systemName: "person.fill")
+                        .font(.system(size: 40))
+                        .foregroundColor(Color.black)
+                    Text(chat.firstname)
+                    Text(chat.lastname)
+                }
+            })
+        }
+    }
+    
+    var contentGroups: some View {
+        List(dataManager.groups, id: \.id){group in
+            Button(action:{
+                if isGroup{
+                    print("Hi")
+                }else{
+                    print("Hi")
+                }
+            }, label:{
+                HStack{
+                    Image(systemName: "person.fill")
+                        .font(.system(size: 40))
+                        .foregroundColor(Color.black)
+                    Text(group.name)
+                }
+            })
+        }
+        
     }
 }
-
-struct GroupView_Previews: PreviewProvider {
-    static var previews: some View {
-        GroupView()
+    struct GroupView_Previews: PreviewProvider {
+        static var previews: some View {
+            GroupView()
+                .environmentObject(DataManager())
+        }
     }
-}
+    
