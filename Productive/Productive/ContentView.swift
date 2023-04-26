@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     @StateObject var dataManager = DataManager()
+    @StateObject var addDataManager = AddDataManager()
     var body: some View {
         TabView{
             DrinkView()
@@ -20,6 +21,7 @@ struct ContentView: View {
                     Label("Group", systemImage: "person.3")
                 }
                 .environmentObject(dataManager)
+                .environmentObject(addDataManager)
             HistoryView()
                 .tabItem{
                     Label("History", systemImage: "placeholdertext.fill")

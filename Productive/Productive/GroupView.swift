@@ -10,6 +10,8 @@ import SwiftUI
 struct GroupView: View {
     @State var isGroup = false
     @EnvironmentObject var dataManager: DataManager
+    @EnvironmentObject var addDataManager: AddDataManager
+    
     var body: some View {
         NavigationView{
             VStack{
@@ -32,8 +34,10 @@ struct GroupView: View {
             .navigationBarItems(trailing: HStack{
                 NavigationLink("AddGroup", destination: AddGroupView())
                     .environmentObject(dataManager)
+                    .environmentObject(addDataManager)
                 NavigationLink("AddChat", destination: AddChatView())
                     .environmentObject(dataManager)
+                    .environmentObject(addDataManager)
                
                 
             })
@@ -85,6 +89,8 @@ struct GroupView: View {
         static var previews: some View {
             GroupView()
                 .environmentObject(DataManager())
+                .environmentObject(AddDataManager())
+                
         }
     }
     
