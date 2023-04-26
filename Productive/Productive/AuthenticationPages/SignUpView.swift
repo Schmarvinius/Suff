@@ -112,11 +112,15 @@ struct SignUpView: View {
                     print(error!.localizedDescription)
                 } else {
                     let db = Firestore.firestore()
-                    db.collection("user").addDocument(data: [
+                    let id: String = Auth.auth().currentUser?.uid ?? ""
+                    
+                    db.collection("user").document(id).setData([
                         "id": email,
                         "firstname": username,
                         "lastname": username,
-                        "groups": [""]
+                        "groups": [""],
+                        "friends":[""],
+                        "chats":[""]
                     ]) { err in
                         if err != nil {
                             print(err!.localizedDescription)

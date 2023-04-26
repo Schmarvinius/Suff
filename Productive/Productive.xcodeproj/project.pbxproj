@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		27426D3729F7D9680034C838 /* AddGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27426D3629F7D9680034C838 /* AddGroupView.swift */; };
+		27426D3929F7D9740034C838 /* AddChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27426D3829F7D9740034C838 /* AddChatView.swift */; };
+		27426D3C29F92AFB0034C838 /* AddDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27426D3B29F92AFB0034C838 /* AddDataManager.swift */; };
 		2770235329F5AF5B00F0FC7E /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		2770235529F5AF5B00F0FC7E /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = 2770235429F5AF5B00F0FC7E /* FirebaseAnalyticsOnDeviceConversion */; };
 		2770235729F5AF5B00F0FC7E /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 2770235629F5AF5B00F0FC7E /* FirebaseAnalyticsSwift */; };
@@ -50,11 +53,16 @@
 		E85E199D29F17AC00018D3E3 /* ProductiveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E85E199C29F17AC00018D3E3 /* ProductiveTests.swift */; };
 		E85E19A729F17AC00018D3E3 /* ProductiveUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E85E19A629F17AC00018D3E3 /* ProductiveUITests.swift */; };
 		E85E19A929F17AC00018D3E3 /* ProductiveUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E85E19A829F17AC00018D3E3 /* ProductiveUITestsLaunchTests.swift */; };
-		E85E19B629F17BB40018D3E3 /* DrinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E85E19B529F17BB40018D3E3 /* DrinkView.swift */; };
 		E85E19B829F17BC20018D3E3 /* GroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E85E19B729F17BC20018D3E3 /* GroupView.swift */; };
 		E85E19BA29F17BCB0018D3E3 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E85E19B929F17BCB0018D3E3 /* HistoryView.swift */; };
 		E85E19BC29F17BD40018D3E3 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E85E19BB29F17BD40018D3E3 /* SettingsView.swift */; };
 		E85E19BE29F291880018D3E3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E85E19BD29F291880018D3E3 /* GoogleService-Info.plist */; };
+		E897AF3E29F94AA4005B9CD2 /* DrinkDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = E897AF3D29F94AA4005B9CD2 /* DrinkDB.swift */; };
+		E897AF4029F94AAB005B9CD2 /* drinks.swift in Sources */ = {isa = PBXBuildFile; fileRef = E897AF3F29F94AAB005B9CD2 /* drinks.swift */; };
+		E897AF4429F94AD7005B9CD2 /* DrinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E897AF4329F94AD7005B9CD2 /* DrinkView.swift */; };
+		E897AF4829F94AEE005B9CD2 /* AddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E897AF4729F94AEE005B9CD2 /* AddView.swift */; };
+		E897AF4A29F94AF5005B9CD2 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E897AF4929F94AF5005B9CD2 /* DetailView.swift */; };
+		E897AF4C29F94B30005B9CD2 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E897AF4B29F94B30005B9CD2 /* ImagePicker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +83,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		27426D3629F7D9680034C838 /* AddGroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGroupView.swift; sourceTree = "<group>"; };
+		27426D3829F7D9740034C838 /* AddChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddChatView.swift; sourceTree = "<group>"; };
+		27426D3B29F92AFB0034C838 /* AddDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDataManager.swift; sourceTree = "<group>"; };
 		2770238A29F5B5D600F0FC7E /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		27B0D22929F581AE001203E8 /* Groups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Groups.swift; sourceTree = "<group>"; };
 		57D8180A29F6AECA001A14FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -94,11 +105,16 @@
 		E85E19A229F17AC00018D3E3 /* ProductiveUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ProductiveUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E85E19A629F17AC00018D3E3 /* ProductiveUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductiveUITests.swift; sourceTree = "<group>"; };
 		E85E19A829F17AC00018D3E3 /* ProductiveUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductiveUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		E85E19B529F17BB40018D3E3 /* DrinkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkView.swift; sourceTree = "<group>"; };
 		E85E19B729F17BC20018D3E3 /* GroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GroupView.swift; path = ../GroupView.swift; sourceTree = "<group>"; };
 		E85E19B929F17BCB0018D3E3 /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
 		E85E19BB29F17BD40018D3E3 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		E85E19BD29F291880018D3E3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; name = "GoogleService-Info.plist"; path = "../../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		E897AF3D29F94AA4005B9CD2 /* DrinkDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkDB.swift; sourceTree = "<group>"; };
+		E897AF3F29F94AAB005B9CD2 /* drinks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = drinks.swift; sourceTree = "<group>"; };
+		E897AF4329F94AD7005B9CD2 /* DrinkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkView.swift; sourceTree = "<group>"; };
+		E897AF4729F94AEE005B9CD2 /* AddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddView.swift; sourceTree = "<group>"; };
+		E897AF4929F94AF5005B9CD2 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
+		E897AF4B29F94B30005B9CD2 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,9 +170,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		27426D3D29F92B6A0034C838 /* Add */ = {
+			isa = PBXGroup;
+			children = (
+				27426D3B29F92AFB0034C838 /* AddDataManager.swift */,
+				27426D3629F7D9680034C838 /* AddGroupView.swift */,
+				27426D3829F7D9740034C838 /* AddChatView.swift */,
+			);
+			path = Add;
+			sourceTree = "<group>";
+		};
 		27B0D22029F30A17001203E8 /* GroupChats */ = {
 			isa = PBXGroup;
 			children = (
+				27426D3D29F92B6A0034C838 /* Add */,
 				E85E19B729F17BC20018D3E3 /* GroupView.swift */,
 				27B0D22929F581AE001203E8 /* Groups.swift */,
 				2770238A29F5B5D600F0FC7E /* DataManager.swift */,
@@ -207,6 +234,9 @@
 			isa = PBXGroup;
 			children = (
 				57D8181529F6B546001A14FA /* ProfileViews */,
+				E897AF2E29F94972005B9CD2 /* utils */,
+				E897AF2D29F94968005B9CD2 /* DrinkView */,
+				E897AF2C29F94962005B9CD2 /* db */,
 				57D8180A29F6AECA001A14FA /* Info.plist */,
 				57D8180D29F6AF16001A14FA /* SignInView.swift */,
 				57D8180C29F6AF16001A14FA /* SignUpView.swift */,
@@ -216,7 +246,6 @@
 				E85E198D29F17ABF0018D3E3 /* ContentView.swift */,
 				E85E198F29F17AC00018D3E3 /* Assets.xcassets */,
 				E85E199129F17AC00018D3E3 /* Preview Content */,
-				E85E19B529F17BB40018D3E3 /* DrinkView.swift */,
 				E85E19B929F17BCB0018D3E3 /* HistoryView.swift */,
 				E85E19BD29F291880018D3E3 /* GoogleService-Info.plist */,
 			);
@@ -246,6 +275,33 @@
 				E85E19A829F17AC00018D3E3 /* ProductiveUITestsLaunchTests.swift */,
 			);
 			path = ProductiveUITests;
+			sourceTree = "<group>";
+		};
+		E897AF2C29F94962005B9CD2 /* db */ = {
+			isa = PBXGroup;
+			children = (
+				E897AF3D29F94AA4005B9CD2 /* DrinkDB.swift */,
+				E897AF3F29F94AAB005B9CD2 /* drinks.swift */,
+			);
+			path = db;
+			sourceTree = "<group>";
+		};
+		E897AF2D29F94968005B9CD2 /* DrinkView */ = {
+			isa = PBXGroup;
+			children = (
+				E897AF4329F94AD7005B9CD2 /* DrinkView.swift */,
+				E897AF4729F94AEE005B9CD2 /* AddView.swift */,
+				E897AF4929F94AF5005B9CD2 /* DetailView.swift */,
+			);
+			path = DrinkView;
+			sourceTree = "<group>";
+		};
+		E897AF2E29F94972005B9CD2 /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				E897AF4B29F94B30005B9CD2 /* ImagePicker.swift */,
+			);
+			path = utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -411,17 +467,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E85E19B629F17BB40018D3E3 /* DrinkView.swift in Sources */,
+				27426D3C29F92AFB0034C838 /* AddDataManager.swift in Sources */,
 				E85E198E29F17ABF0018D3E3 /* ContentView.swift in Sources */,
+				E897AF4829F94AEE005B9CD2 /* AddView.swift in Sources */,
 				E85E19BA29F17BCB0018D3E3 /* HistoryView.swift in Sources */,
 				E85E19BC29F17BD40018D3E3 /* SettingsView.swift in Sources */,
 				57D8181729F6B56C001A14FA /* ProfileView.swift in Sources */,
 				E85E19B829F17BC20018D3E3 /* GroupView.swift in Sources */,
 				57D8181B29F80149001A14FA /* AchievementOverView.swift in Sources */,
 				E85E198C29F17ABF0018D3E3 /* ProductiveApp.swift in Sources */,
+				E897AF4C29F94B30005B9CD2 /* ImagePicker.swift in Sources */,
+				27426D3729F7D9680034C838 /* AddGroupView.swift in Sources */,
+				E897AF4429F94AD7005B9CD2 /* DrinkView.swift in Sources */,
+				E897AF4029F94AAB005B9CD2 /* drinks.swift in Sources */,
+				27426D3929F7D9740034C838 /* AddChatView.swift in Sources */,
 				2770238B29F5B5D600F0FC7E /* DataManager.swift in Sources */,
 				57D8181029F6AF16001A14FA /* SignInView.swift in Sources */,
+				E897AF3E29F94AA4005B9CD2 /* DrinkDB.swift in Sources */,
 				57D8180F29F6AF16001A14FA /* SignUpView.swift in Sources */,
+				E897AF4A29F94AF5005B9CD2 /* DetailView.swift in Sources */,
 				57D8180E29F6AF16001A14FA /* WelcomePageView.swift in Sources */,
 				57D8181929F7CCFB001A14FA /* DataManagerAchievements.swift in Sources */,
 				27B0D22A29F581AE001203E8 /* Groups.swift in Sources */,
