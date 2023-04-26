@@ -14,6 +14,8 @@ struct SignInView: View {
     @State private var password: String = "123456"
     @State private var loggedIn = false
     
+    let manager = CacheManager.instance
+    
     var body: some View {
         if loggedIn {
             ContentView()
@@ -87,6 +89,8 @@ struct SignInView: View {
                 print(error!.localizedDescription)
                 
             } else {
+                manager.addString(value: password, key: "password")
+                manager.addString(value: email, key: "email")
                 self.loggedIn.toggle()
                 print("Test")
             }

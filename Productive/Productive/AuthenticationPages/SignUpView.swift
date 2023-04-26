@@ -17,6 +17,8 @@ struct SignUpView: View {
     @State private var accountExists: Bool = false;
     @State private var whichView: Int32 = 0;
     
+    let manager = CacheManager.instance
+    
     var body: some View {
         //if(isSignedUp){
         //    ContentView()
@@ -125,6 +127,8 @@ struct SignUpView: View {
                         if err != nil {
                             print(err!.localizedDescription)
                         }
+                        manager.addString(value: password, key: "password")
+                        manager.addString(value: email, key: "email")
                         self.isSignedUp.toggle()
                         self.whichView = 1
                     }
