@@ -17,7 +17,7 @@ struct DrinkView: View {
     @State var pathscopy = [String]()
     @State var image : UIImage?
     
-    /*@State var list : [Drink] = [
+    @State var list : [Drink] = [
         Drink(id: "1", name: "Test1", pic: "DrinksImages/F534618C-71FA-496B-A2EF-2596A49E8886.jpg", volume: 250),
         Drink(id: "2", name: "Test2", pic: "DrinksImages/F534618C-71FA-496B-A2EF-2596A49E8886.jpg", volume: 300),
         Drink(id: "3", name: "Test3", pic: "DrinksImages/F534618C-71FA-496B-A2EF-2596A49E8886.jpg", volume: 120),
@@ -28,49 +28,88 @@ struct DrinkView: View {
         Drink(id: "8", name: "Test8", pic: "DrinksImages/F534618C-71FA-496B-A2EF-2596A49E8886.jpg", volume: 250),
         Drink(id: "9", name: "Test9", pic: "DrinksImages/F534618C-71FA-496B-A2EF-2596A49E8886.jpg", volume: 300),
         Drink(id: "10", name: "Test10", pic: "DrinksImages/F534618C-71FA-496B-A2EF-2596A49E8886.jpg", volume: 250),
-    ]*/
+    ]
+    
+    let columns = [GridItem(.flexible()), GridItem(.flexible())]
+    
+    @State var isInGroup : Bool = false
     
     var body: some View {
         NavigationView {
-            ZStack{
+            if isInGroup == true {
+                
+                ZStack{
+                    ScrollView{
+                        LazyVGrid(columns: columns) {
+                            ForEach(list) { item in
+                                NavigationLink{
+                                    DetailView(name: item.name, volume: item.volume, pic: item.pic)
+                                } label: {
+                                    VStack{
+                                        
+                                        //Image(uiimage: retrievedImage[])
+                                        RoundedRectangle(cornerRadius: 10)
+                                            .frame(maxWidth: 100, maxHeight:100)
+                                        Text(item.name)
+                                    }
+                                }
+                                .frame(width: 150, height:150)
+                                .background(.gray)
+                                .cornerRadius(20)
+                            }
+                        }
+                        .padding(.bottom, 100)
+                    }
+                    
+                    /*
+                     VStack{
+                     List(list/*drinkdb.drinks, id: \.id*/){ item in
+                     NavigationLink{
+                     DetailView(name: item.name, volume: item.volume, pic: item.pic)
+                     } label: {
+                     HStack{
+                     //Image(uiimage: retrievedImage!)
+                     RoundedRectangle(cornerRadius: 10)
+                     .frame(maxWidth: 50, maxHeight: 50)
+                     Text(item.name)
+                     }
+                     }.frame(height: 50)
+                     
+                     }
+                     }*/
+                    
+                    VStack{
+                        Spacer()
+                        NavigationLink(destination: AddView(), label: {
+                            Text("Add a drink")
+                                .frame(width: 300)
+                                .padding()
+                                .foregroundColor(.white)
+                                .background(.blue)
+                                .clipShape(Capsule())
+                        })
+                        .padding()
+                    }
+                }
+                .navigationTitle("Your Drinks")
+                .navigationBarTitleDisplayMode(.inline)
+        } else {
                 VStack{
-                    List(drinkdb.drinks, id: \.id){ item in
-                        NavigationLink{
-                            DetailView(name: item.name, volume: item.volume, pic: item.pic)
-                        } label: {
-                            HStack{
-                                //Image(uiimage: retrievedImage!)
-                                RoundedRectangle(cornerRadius: 10)
-                                   .frame(maxWidth: 50, maxHeight: 50)
-                               Text(item.name)
-                           }
-                            }.frame(height: 50)
-                        
+                    Text("Please join a group first")
+                        .padding()
+                    NavigationLink(destination: GroupList()) {
+                            Text("Join")
+                                .frame(width: 300)
+                                .padding()
+                                .foregroundColor(.white)
+                                .background(.blue)
+                                .clipShape(Capsule())
                     }
                     
                 }
-                
-                VStack{
-                    Spacer()
-                    NavigationLink(destination: AddView(), label: {
-                        Text("Add a drink")
-                            .frame(width: 300)
-                            .padding()
-                            .foregroundColor(.white)
-                            .background(.blue)
-                            .clipShape(Capsule())
-                    })
-                    .padding()
-                    
-                }
             }
-            .navigationTitle("Your Drinks")
-        }
-        .onAppear{
-            //drinkdb.fetchDrinks()
-            //retrieveImages()
-        }
         
+        }
     }
     
     func retrieveImages() {
@@ -105,6 +144,7 @@ struct DrinkView: View {
             }
         }
     }
+    
 }
 
 struct DrinkView_Previews: PreviewProvider {
