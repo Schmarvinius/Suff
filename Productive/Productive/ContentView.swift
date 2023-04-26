@@ -10,12 +10,15 @@ import SwiftUI
 struct ContentView: View {
     @StateObject var dataManager = DataManager()
     @StateObject var addDataManager = AddDataManager()
+    @StateObject var drinkDB = DrinkDB()
+    
     var body: some View {
         TabView{
             DrinkView()
                 .tabItem{
                     Label("Your Drinks", systemImage: "person")
                 }
+                .environmentObject(drinkDB)
             GroupView()
                 .tabItem{
                     Label("Group", systemImage: "person.3")
