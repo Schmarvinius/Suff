@@ -68,9 +68,7 @@ struct AddView: View {
                             .overlay(Text("Upload a picture of your drink"))
                     }
                     
-                    RoundedRectangle(cornerRadius: 50)
-                        .frame(width: 330, height: 1)
-                        .padding()
+                    
                     TextField("Drink name", text: $name)
                         .frame(minWidth: 0,maxWidth: 300)
                         .font(.system(size:18))
@@ -145,7 +143,7 @@ struct AddView: View {
         
         let name : String = name
         let vol : Int = vol
-        let id : String = String(drinkdb.drinks.count)
+        
         
         //Image isnt nil
         guard image != nil else {
@@ -169,12 +167,15 @@ struct AddView: View {
         fileRef.putData(imageData!, metadata: nil) { metadata, error in
             if error == nil && metadata != nil {
                 let db = Firestore.firestore()
+                let id = db.collection("drink").document().documentID
                 db.collection("drink").document().setData([
                     "name": name,
                     "volume": vol,
                     "id": id,
                     "pic": path
                 ])
+                // add new drink to drinksSession
+                db.collection("drinksSession")
             }
         }
     }

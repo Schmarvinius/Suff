@@ -13,6 +13,8 @@ import FirebaseStorage
 struct DrinkView: View {
     
     @EnvironmentObject var drinkdb : DrinkDB
+    @EnvironmentObject var dataManager : DataManager
+    
     @State var retrievedImages = [UIImage]()
     @State var pathscopy = [String]()
     @State var image : UIImage?
@@ -34,83 +36,106 @@ struct DrinkView: View {
     
     @State var isInGroup : Bool = false
     
+    let manager = CacheManager.instance
+    
     var body: some View {
-        NavigationView {
-            if isInGroup == true {
-                
-                ZStack{
-                    ScrollView{
-                        LazyVGrid(columns: columns) {
-                            ForEach(list) { item in
-                                NavigationLink{
-                                    DetailView(name: item.name, volume: item.volume, pic: item.pic)
-                                } label: {
-                                    VStack{
-                                        
-                                        //Image(uiimage: retrievedImage[])
-                                        RoundedRectangle(cornerRadius: 10)
-                                            .frame(maxWidth: 100, maxHeight:100)
-                                        Text(item.name)
-                                    }
-                                }
-                                .frame(width: 150, height:150)
-                                .background(.gray)
-                                .cornerRadius(20)
-                            }
-                        }
-                        .padding(.bottom, 100)
-                    }
-                    
-                    /*
-                     VStack{
-                     List(list/*drinkdb.drinks, id: \.id*/){ item in
-                     NavigationLink{
-                     DetailView(name: item.name, volume: item.volume, pic: item.pic)
-                     } label: {
-                     HStack{
-                     //Image(uiimage: retrievedImage!)
-                     RoundedRectangle(cornerRadius: 10)
-                     .frame(maxWidth: 50, maxHeight: 50)
-                     Text(item.name)
-                     }
-                     }.frame(height: 50)
-                     
-                     }
-                     }*/
-                    
-                    VStack{
-                        Spacer()
-                        NavigationLink(destination: AddView(), label: {
-                            Text("Add a drink")
-                                .frame(width: 300)
-                                .padding()
-                                .foregroundColor(.white)
-                                .background(.blue)
-                                .clipShape(Capsule())
-                        })
-                        .padding()
-                    }
-                }
-                .navigationTitle("Your Drinks")
-                .navigationBarTitleDisplayMode(.inline)
-        } else {
-                VStack{
-                    Text("Please join a group first")
-                        .padding()
-                    NavigationLink(destination: GroupList()) {
-                            Text("Join")
-                                .frame(width: 300)
-                                .padding()
-                                .foregroundColor(.white)
-                                .background(.blue)
-                                .clipShape(Capsule())
-                    }
-                    
-                }
-            }
         
+        
+        
+        if manager.getString(key: "currentGroup") == "" {
+            Joined
+        } else {
+            notJoined
+                .environmentObject(dataManager)
         }
     }
+    
+    var Joined: some View {
+        NavigationView {
+            ZStack{
+                /*
+                ScrollView{
+                    LazyVGrid(columns: columns) {
+                        ForEach(list) { item in
+                            NavigationLink{
+                                DetailView(name: item.name, volume: item.volume, pic: item.pic)
+                                    
+                            } label: {
+                                VStack{
+                                    //Image(uiimage: retrievedImage[])
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .frame(maxWidth: 100, maxHeight:100)
+                                    Text(item.name)
+                                }
+                            }
+                            .frame(width: 150, height:150)
+                            .background(.gray)
+                            .cornerRadius(20)
+                            .onTapGesture {
+                                print("Hi")
+                            }
+                        }
+                    }
+                    .padding(.bottom, 100)
+                }
+                */
+                
+                
+                 VStack{
+                 List(drinkdb.drinks, id: \.id){ item in
+                 NavigationLink{
+                 DetailView(name: item.name, volume: item.volume, pic: item.pic)
+                 } label: {
+                 HStack{
+                 //Image(uiimage: retrievedImage!)
+                 RoundedRectangle(cornerRadius: 10)
+                 .frame(maxWidth: 50, maxHeight: 50)
+                 Text(item.name)
+                 }
+                 }.frame(height: 50)
+                 
+                 }
+                 }
+                
+                VStack{
+                    Spacer()
+                    NavigationLink(destination: AddView(), label: {
+                        Text("Add a drink")
+                            .frame(width: 300)
+                            .padding()
+                            .foregroundColor(.white)
+                            .background(.blue)
+                            .clipShape(Capsule())
+                    })
+                    .padding()
+                }
+            }
+            .navigationTitle("Your Drinks")
+            .navigationBarTitleDisplayMode(.inline)
+            .navigationBarBackButtonHidden(true)
+        }
+    }
+    
+    var notJoined: some View {
+        NavigationView {
+            VStack{
+                Text("Please join a group first")
+                    .padding()
+                NavigationLink(destination: GroupList().environmentObject(dataManager)) {
+                    Text("Join")
+                        .frame(width: 300)
+                        .padding()
+                        .foregroundColor(.white)
+                        .background(.blue)
+                        .clipShape(Capsule())
+                }
+            }
+            .navigationTitle("Join")
+            .navigationBarTitleDisplayMode(.inline)
+        }
+        .navigationBarBackButtonHidden(true)
+    }
+
     
     func retrieveImages() {
         let db = Firestore.firestore()
@@ -144,7 +169,6 @@ struct DrinkView: View {
             }
         }
     }
-    
 }
 
 struct DrinkView_Previews: PreviewProvider {

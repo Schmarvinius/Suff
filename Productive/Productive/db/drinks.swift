@@ -20,3 +20,7 @@ struct Drink : Identifiable {
     var volume: Int
     //var image: UIImage?
 }
+
+struct Sessions : Identifiable {
+    var drinkId: String
+}
