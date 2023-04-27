@@ -20,6 +20,7 @@ struct ContentView: View {
                     Label("Your Drinks", systemImage: "wineglass")
                 }
                 .environmentObject(drinkDB)
+                .environmentObject(dataManager)
             GroupView()
                 .tabItem{
                     Label("Group", systemImage: "person.3")
@@ -44,6 +45,6 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        WelcomePageView()
     }
 }

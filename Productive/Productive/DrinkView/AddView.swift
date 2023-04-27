@@ -34,13 +34,20 @@ struct AddView: View {
     
     @EnvironmentObject var drinkdb : DrinkDB
     
-    
+    @State var add : Bool = true
     
     var body: some View {
+        if add == true {
+            main
+        } else {
+            DrinkView()
+        }
+    }
+    
+    var main: some View {
         NavigationView{
             ZStack{
                 VStack {
-                    Text("")
                     if(image != nil) {
                         Image(uiImage: image!)
                             .resizable()
@@ -79,38 +86,32 @@ struct AddView: View {
                         .foregroundColor(.black)
                         .overlay(RoundedRectangle(cornerRadius: 25).stroke(Color.black, lineWidth: 1))
                     Spacer()
-                    
-                    
-                    NavigationLink(destination: DrinkView(), label: {
-                            Text("Done")
-                                .frame(width: 300)
-                                .padding()
-                                .foregroundColor(.white)
-                                .background(.blue)
-                                .clipShape(Capsule())
-                                .onTapGesture {
-                                    print("Tapped")
-                                    if image.self != nil {
-                                        if name != "" {
-                                            upload(name: name, vol: Int(vol) ?? 0)
-                                            drinkdb.fetchDrinks()
-                                            print("added!")
-                                        } else {
-                                            errorbool = true
-                                            print("please give this drink a name")
-                                        }
-                                    } else {
-                                        errorbool = true
-                                        print("upload a picture first")
-                                    }
-                                }
-                                .alert(isPresented: $errorbool) {
-                                    Alert(title: Text("Your input is invalid"),message: nil, dismissButton: .cancel())
-                                }
-                        })
+                    Button {
+                        add = false
+                        
+                        if image.self != nil {
+                            if name != "" {
+                                upload(name: name, vol: Int(vol) ?? 0)
+                                drinkdb.fetchDrinks()
+                                print("added!")
+                            } else {
+                                errorbool = true
+                            }
+                        } else {
+                            errorbool = true
+                        }
+                    } label: {
+                        Text("Done")
+                            .frame(width: 300)
+                            .padding()
+                            .foregroundColor(.white)
+                            .background(.blue)
+                            .clipShape(Capsule())
+                            .alert(isPresented: $errorbool) {
+                                Alert(title: Text("Your input is invalid"),message: nil, dismissButton: .cancel())
+                            }
+                    }
                     .padding()
-                    
-                    
                 }
                 .padding(.horizontal, 20)
                 .confirmationDialog("Upload a photo", isPresented: $showDialog) {
@@ -165,7 +166,7 @@ struct AddView: View {
         let fileRef = storageRef.child(path)
         
         
-        let uploadTask = fileRef.putData(imageData!, metadata: nil) { metadata, error in
+        fileRef.putData(imageData!, metadata: nil) { metadata, error in
             if error == nil && metadata != nil {
                 let db = Firestore.firestore()
                 db.collection("drink").document().setData([

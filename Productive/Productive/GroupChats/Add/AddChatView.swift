@@ -11,13 +11,13 @@ import FirebaseAuth
 
 struct AddChatView: View {
     @EnvironmentObject var dataManager: DataManager
+    @EnvironmentObject var addDataManager: AddDataManager
     var body: some View {
         NavigationView(){
             VStack{
                 List(dataManager.friends, id: \.id){friend in
                     Button(action:{
-                      
-                            addChat(user: friend)
+                        addDataManager.addChat(user: friend, dataManager: dataManager)
                         
                     }, label:{
                         HStack{
@@ -39,39 +39,12 @@ struct AddChatView: View {
         }
        
     }
-    private func addChat(user: User){
-        var addchats: [String] = []
-        var notused = true
-        for chat in dataManager.chats{
-            addchats.append(chat.id)
-            if(chat.id == user.id){
-                notused = false
-            }
-        }
-        if(notused){
-            addchats.append(user.id)
-        }
-        
-        let account = Auth.auth().currentUser
-        let id = account!.uid
-        print(id)
-        let ref = Firestore.firestore().collection("user").document(id)
-        ref.updateData([
-            "chats": addchats
-        ]){ err in
-            if let err = err {
-                print("Error updating document: \(err)")
-            } else {
-                print("Document successfully updated")
-            }
-        }
-            dataManager.fetchChats()            
-    }
 }
 
 struct AddChatView_Previews: PreviewProvider {
     static var previews: some View {
         AddChatView()
             .environmentObject(DataManager())
+            .environmentObject(AddDataManager())
     }
 }

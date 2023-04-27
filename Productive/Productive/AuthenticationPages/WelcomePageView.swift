@@ -6,10 +6,47 @@
 //
 
 import SwiftUI
+import FirebaseAuth
 
 struct WelcomePageView: View {
-    var body: some View {
     
+    var body: some View {
+        let manager = CacheManager.instance
+        
+        if isAuthenticated(email: manager.getString(key: "email"), password: manager.getString(key: "password")) {
+            ContentView()
+        } else {
+            main
+        }
+        
+    }
+    init() {
+        let manager = CacheManager.instance
+        
+        //isAuthenticated(email: manager.getString(key: "email"), password: manager.getString(key: "password"))
+    }
+    func isAuthenticated(email: String, password: String) -> Bool {
+        var auth : Bool = false
+        if (email != "" && password != "") {
+            Auth.auth().signIn(withEmail: email, password: password) { result, error in
+                if error != nil {
+                    print(error!.localizedDescription)
+                    auth = false
+                    print("error in auth")
+                } else {
+                    auth = true
+                    print("worked")
+                }}
+            } else {
+                auth = false
+                print("no cache data")
+            }
+            return auth
+        }
+    
+    
+    var main: some View {
+        
         NavigationView{
             
             ZStack {

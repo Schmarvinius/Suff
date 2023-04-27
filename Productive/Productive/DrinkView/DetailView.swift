@@ -11,65 +11,83 @@ import FirebaseStorage
 
 struct DetailView: View {
     
-    let name: String
-    let volume: Int
-    let pic: String
+    @EnvironmentObject var drinkdb : DrinkDB
+    
+    @State private var name : String
+    @State private var volume : String
+    @State private var pic: String
        
     init (name: String, volume: Int, pic: String) {
         self.name = name
-        self.volume = volume
+        self.volume = String(volume)
         self.pic = pic
         self.retrievedImage = nil
     }
     
     @State var retrievedImage : UIImage?
     
+    
+    
     var body: some View {
-        NavigationView(){
-            ZStack{
-                VStack{
-                    if retrievedImage != nil {
-                        Image(uiImage: retrievedImage!)
-                            .resizable()
-                            .frame(maxWidth: 330, maxHeight: 330)
-                            .cornerRadius(20)
-                            .aspectRatio(contentMode: .fill)
-                    } else {
-                        ZStack{
-                            Rectangle()
+            NavigationView(){
+                ZStack{
+                    VStack{
+                        if retrievedImage != nil {
+                            Image(uiImage: retrievedImage!)
+                                .resizable()
                                 .frame(maxWidth: 330, maxHeight: 330)
                                 .cornerRadius(20)
-                            ProgressView()
-                                .progressViewStyle(CircularProgressViewStyle(tint: .gray))
-                                .scaleEffect(2)
+                                .aspectRatio(contentMode: .fill)
+                        } else {
+                            ZStack{
+                                Rectangle()
+                                    .frame(maxWidth: 330, maxHeight: 330)
+                                    .cornerRadius(20)
+                                ProgressView()
+                                    .progressViewStyle(CircularProgressViewStyle(tint: .gray))
+                                    .scaleEffect(2)
+                            }
+                            
                         }
-                        
-                    }
-                     
-                    RoundedRectangle(cornerRadius: 50)
-                        .frame(width: 330, height: 1)
+                        Form{
+                            Section (header: Text("Information")){
+                                HStack{
+                                    Text("Drink Name:")
+                                    Spacer()
+                                    TextField("", text: $name)
+                                }
+                                HStack{
+                                    Text("Volume:")
+                                    Spacer()
+                                    TextField("", text: $volume)
+                                        .keyboardType(.numberPad)
+                                        .onChange(of: volume) { newValue in
+                                            let filtered = newValue.filter{"0123456789".contains($0)}
+                                            if filtered != newValue {
+                                                volume = filtered
+                                            }
+                                        }
+                                }
+                            }
+                        }
+                        .cornerRadius(20)
                         .padding()
-                    List{
-                        HStack{
-                            Text("Drink Name:")
-                            Spacer()
-                            Text(name)
-                        }
-                        HStack{
-                            Text("Volume:")
-                            Spacer()
-                            Text(String(volume))
-                        }
+                        Spacer()
+                        Text("Done")
+                            .frame(width: 300)
+                            .padding()
+                            .foregroundColor(.white)
+                            .background(.blue)
+                            .clipShape(Capsule())
                     }
-                    Spacer()
                 }
+                .navigationTitle("Details")
+                .navigationBarTitleDisplayMode(.inline)
             }
-            .navigationTitle("Details")
-            .navigationBarTitleDisplayMode(.inline)
-        }
-        .onAppear {
-            retrievephoto(pic: pic)
-        }
+            .onAppear {
+                retrievephoto(pic: pic)
+            }
+        
     }
     
     func retrievephoto(pic: String) {
