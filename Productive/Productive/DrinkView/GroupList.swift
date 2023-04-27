@@ -15,22 +15,38 @@ struct GroupList: View {
     
     let manager = CacheManager.instance
     
+    let list: [Group] = [
+        Group(id: "1", name: "besteGruppe", userIDs: ["till@till.de", "yannis@yannis.de","marvin@marvin.de"]),
+        Group(id: "2", name: "besteGruppe", userIDs: ["till@till.de", "yannis@yannis.de","marvin@marvin.de"]),
+        Group(id: "3", name: "besteGruppe", userIDs: ["till@till.de", "yannis@yannis.de","marvin@marvin.de"]),
+        Group(id: "4", name: "besteGruppe", userIDs: ["till@till.de", "yannis@yannis.de","marvin@marvin.de"])
+    ]
+    
     var body: some View {
-        List (dataManager.groups, id: \.id) {group in
-            HStack{
-                Image(systemName: "person.fill")
-                    .font(.system(size: 40))
-                    .foregroundColor(Color.black)
-                Text(group.name)
-            }
-            .onTapGesture {
-                manager.addString(value: group.name, key: "currentGroup")
-                let g = manager.getString(key: "currentGroup")
-                //route to drink view (contentview)
-                let test = manager.getString(key: "email")
-                let test2 = manager.getString(key: "password")
+        
+        NavigationView {
+            List (dataManager.groups, id: \.id) {group in
+                NavigationLink(destination: DrinkView()) {
+                    HStack{
+                        Image(systemName: "person.fill")
+                            .font(.system(size: 40))
+                            .foregroundColor(Color.black)
+                        Text(group.name)
+                            .onTapGesture {
+                                print("tapped")
+                                manager.addString(value: group.name, key: "currentGroup")
+                                let test = manager.getString(key: "currentGroup")
+                            }
+                    }
+                    
+                }
+                
             }
         }
+    }
+    
+    var test: some View{
+        Text("HI")
     }
 }
 
