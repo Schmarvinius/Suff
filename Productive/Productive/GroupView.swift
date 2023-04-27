@@ -109,9 +109,13 @@ struct GroupView: View {
                         VStack(alignment: .leading){
                             HStack{
                                 Text(chat.firstname)
+                                    .font(.system(size: 16, weight: .bold))
                                 Text(chat.lastname)
+                                    .font(.system(size: 16, weight: .bold))
                             }
                             Text("Message from User")
+                                .font(.system(size: 16))
+                                .foregroundColor(Color(.lightGray  ))
 
                         }
                         Spacer()
@@ -139,6 +143,19 @@ struct GroupView: View {
         }
         
     }
+//    func getPic (path : String){
+//        let storageRef = Storage.storage().reference()
+//        let fileref = storageRef.child(path)
+//        fileref.getData(maxSize: 5 * 1024 * 1024) { dat, err in
+//            if err == nil && dat != nil {
+//                self.image = UIImage(data: dat!)
+//            }
+//        }
+//    }
+    
+    
+    
+    
 }
     struct GroupView_Previews: PreviewProvider {
         static var previews: some View {
