@@ -9,7 +9,7 @@ import SwiftUI
 import FirebaseAuth
 
 struct GroupView: View {
-    @State var isGroup = true
+    @State var isGroup = false
     @State var showAddChat = false
     @State var showAddGroup = false
     @EnvironmentObject var dataManager: DataManager
@@ -54,10 +54,7 @@ struct GroupView: View {
                     Spacer()
                 }
                 .padding(.horizontal)
-                
-                
-                
-                
+
                 Picker(selection: $isGroup, label: Text("Picker here")){
                     Text("Groups")
                         .tag(true)
@@ -71,6 +68,7 @@ struct GroupView: View {
                 }else{
                     contentChats
                 }
+                
             }
             .navigationTitle(isGroup ? "Groups" : "Chats")
             .navigationBarTitleDisplayMode(.inline)
@@ -97,10 +95,7 @@ struct GroupView: View {
     }
     var contentChats: some View {
         List(dataManager.chats, id: \.id){chat in
-            Button(action:{
-                print("SKR SKR IN MEINEM AUDI")
-            }, label:{
-                
+            NavigationLink(destination: ChatView(chatUser: Auth.auth().currentUser?.email ?? "")){
                 VStack{
                     HStack{
                         Image(systemName: "person.fill")
@@ -121,10 +116,9 @@ struct GroupView: View {
                         Spacer()
                         Text("22d")
                             .font(.system(size: 14, weight: .semibold))
-                        
                     }
                 }
-            })
+            }
         }
     }
     
