@@ -19,10 +19,13 @@ class DataManager: ObservableObject {
     @Published var groups: [Group] = []
     @Published var attribut: String = ""
     @Published var field : [String] = [""]
+    @Published var userFirstname : String = ""
+    @Published var userLastname : String = ""
     init() {
         fetchFriends()
         fetchGroup()
         fetchChats()
+        fetchaccUser()
     }
     func getField(collection: String, dbfield : String, query : String, field : String){
         let db = Firestore.firestore()
@@ -152,6 +155,21 @@ class DataManager: ObservableObject {
                 }
             }
         }
+    }
+    func fetchaccUser(){
+        let email = Auth.auth().currentUser?.email
+        let ref = Firestore.firestore().collection("user")
+        ref.whereField("id", isEqualTo: email ?? "" )
+            .getDocuments(){snapshot, error in
+                guard error == nil else {
+                    print(error!.localizedDescription)
+                    return
+                }
+                let document = snapshot?.documents[0]
+                let data = document?.data()
+                self.userFirstname = data!["firstname"] as? String ?? ""
+                self.userLastname = data!["lastname"] as? String ?? ""
+            }
     }
     
     func fetchChats(){
