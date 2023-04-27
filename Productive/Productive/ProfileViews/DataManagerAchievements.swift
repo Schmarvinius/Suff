@@ -94,7 +94,7 @@ class DataManagerAchievements: ObservableObject {
             return
         }
         let storageRef = Storage.storage().reference()
-        let imageData = self.image!.jpegData(compressionQuality: 0.8)
+        let imageData = self.image!.jpegData(compressionQuality: 0.1)
         
         guard imageData != nil else {
             return
@@ -105,7 +105,7 @@ class DataManagerAchievements: ObservableObject {
         
         
         //if profile picture has been changed, it will be updated in the database and the old will be deleted
-        if self.oldImage?.jpegData(compressionQuality: 0.8) != self.image?.jpegData(compressionQuality: 0.8) {
+        if self.oldImage?.jpegData(compressionQuality: 0.1) != self.image?.jpegData(compressionQuality: 0.1) {
             //delete old profile picture
             let oldfileRef = storageRef.child(self.path)
             oldfileRef.delete { err in

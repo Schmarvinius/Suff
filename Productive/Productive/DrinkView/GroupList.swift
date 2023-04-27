@@ -34,7 +34,7 @@ struct GroupList: View {
                         Text(group.name)
                             .onTapGesture {
                                 print("tapped")
-                                manager.addString(value: group.name, key: "currentGroup")
+                                manager.addString(value: group.id, key: "currentGroup")
                                 let test = manager.getString(key: "currentGroup")
                             }
                     }
@@ -53,5 +53,6 @@ struct GroupList: View {
 struct GroupList_Previews: PreviewProvider {
     static var previews: some View {
         GroupList()
+            .environmentObject(DataManager())
     }
 }
