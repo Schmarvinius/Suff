@@ -20,4 +20,5 @@ struct User: Identifiable {
     var groupIDs: [String]
     var height: String
     var weight: String
+    var pic: String
 }
