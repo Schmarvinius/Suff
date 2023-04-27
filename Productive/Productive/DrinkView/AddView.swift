@@ -154,7 +154,7 @@ struct AddView: View {
         //create reference
         let storageRef = Storage.storage().reference()
         
-        let imageData = image!.jpegData(compressionQuality: 0.8)
+        let imageData = image!.jpegData(compressionQuality: 0.1)
         
         guard imageData != nil else {
             return
