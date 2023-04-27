@@ -63,8 +63,6 @@ class DataManager: ObservableObject {
             }
     }
 
-    
-    
     func fetchGroup(){
         let user = Auth.auth().currentUser
         if let user = user {
