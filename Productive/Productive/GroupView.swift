@@ -9,7 +9,7 @@ import SwiftUI
 import FirebaseAuth
 
 struct GroupView: View {
-    @State var isGroup = false
+    @State var isGroup = true
     @State var showAddChat = false
     @State var showAddGroup = false
     @EnvironmentObject var dataManager: DataManager
@@ -133,11 +133,24 @@ struct GroupView: View {
             Button(action:{
                 print("HI")
             }, label:{
-                HStack{
-                    Image(systemName: "person.fill")
-                        .font(.system(size: 40))
-                        .foregroundColor(Color.black)
-                    Text(group.name)
+                VStack{
+                    HStack{
+                        Image(systemName: "person.fill")
+                            .font(.system(size: 40))
+                            .foregroundColor(Color.black)
+                        VStack(alignment: .leading){
+                            Text(group.name)
+                                .font(.system(size: 16, weight: .bold))
+                            Text("Message from User")
+                                .font(.system(size: 16))
+                                .foregroundColor(Color(.lightGray  ))
+                        }
+                        Spacer()
+                        Text("22d")
+                            .font(.system(size: 14, weight: .semibold))
+                        
+                    }
+
                 }
             })
         }
