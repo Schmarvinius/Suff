@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import FirebaseAuth
 
 struct GroupView: View {
     @State var isGroup = false
@@ -13,10 +14,50 @@ struct GroupView: View {
     @State var showAddGroup = false
     @EnvironmentObject var dataManager: DataManager
     @EnvironmentObject var addDataManager: AddDataManager
+    @EnvironmentObject var dataManagerAch : DataManagerAchievements
     
     var body: some View {
         NavigationView{
-            VStack{
+            VStack(){
+                HStack(){
+                    if(dataManagerAch.image == nil) {
+                        Image("IconTestDoner")
+                            .resizable()
+                            .clipShape(Circle())
+                            .frame(width: 60, height: 60)
+                            .scaledToFit()
+                    } else {
+                        Image(uiImage: dataManagerAch.image!)
+                            .resizable()
+                            .clipShape(Circle())
+                            .frame(width:60, height: 60)
+                            .scaledToFit()
+                    }
+                    VStack(alignment: .leading, spacing: 4){
+                        HStack{
+                            Text(dataManager.userFirstname)
+                            .font(.system(size:24, weight: .bold))
+                            Text(dataManager.userLastname)
+                            .font(.system(size:24, weight: .bold))
+                            
+                        }
+                        HStack{
+                            Circle()
+                                .foregroundColor(Color(.green))
+                                .frame(width: 14)
+                                .shadow(radius: 1)
+                            Text("online")
+                                .font(.system(size:14))
+                                .foregroundColor(Color(.lightGray))
+                        }
+                    }
+                    Spacer()
+                }
+                .padding(.horizontal)
+                
+                
+                
+                
                 Picker(selection: $isGroup, label: Text("Picker here")){
                     Text("Groups")
                         .tag(true)
@@ -50,23 +91,6 @@ struct GroupView: View {
                     }
                 }
             }))
-                
-                
-                
-                
-                /*if(isGroup){
-                    NavigationLink("+", destination: AddGroupView())
-                        .environmentObject(dataManager)
-                        .environmentObject(addDataManager)
-                } else{
-                    NavigationLink("+", destination: AddChatView())
-                        .environmentObject(dataManager)
-                        .environmentObject(addDataManager)
-                }*/
-                
-               
-                
-            
         }
         
         
@@ -76,12 +100,25 @@ struct GroupView: View {
             Button(action:{
                 print("SKR SKR IN MEINEM AUDI")
             }, label:{
-                HStack{
-                    Image(systemName: "person.fill")
-                        .font(.system(size: 40))
-                        .foregroundColor(Color.black)
-                    Text(chat.firstname)
-                    Text(chat.lastname)
+                
+                VStack{
+                    HStack{
+                        Image(systemName: "person.fill")
+                            .font(.system(size: 45))
+                            .foregroundColor(Color.black)
+                        VStack(alignment: .leading){
+                            HStack{
+                                Text(chat.firstname)
+                                Text(chat.lastname)
+                            }
+                            Text("Message from User")
+
+                        }
+                        Spacer()
+                        Text("22d")
+                            .font(.system(size: 14, weight: .semibold))
+                        
+                    }
                 }
             })
         }
@@ -108,6 +145,7 @@ struct GroupView: View {
             GroupView()
                 .environmentObject(DataManager())
                 .environmentObject(AddDataManager())
+                .environmentObject(DataManagerAchievements())
                 
         }
     }

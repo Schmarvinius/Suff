@@ -27,11 +27,13 @@ struct ContentView: View {
                 }
                 .environmentObject(dataManager)
                 .environmentObject(addDataManager)
+                .environmentObject(dataManagerAch)
             HistoryView()
                 .tabItem{
                     Label("History", systemImage: "placeholdertext.fill")
                 }
                 .environmentObject(dataManager)
+                .environmentObject(dataManagerAch)
             ProfileView()
                 .tabItem{
                     Label("Profile", systemImage: "person")
