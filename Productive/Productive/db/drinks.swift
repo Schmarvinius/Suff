@@ -22,5 +22,5 @@ struct Drink : Identifiable {
 }
 
 struct Sessions : Identifiable {
-    var drinkId: String
+    var id: String
 }

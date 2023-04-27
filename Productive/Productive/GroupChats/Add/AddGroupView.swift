@@ -140,6 +140,7 @@ struct AddGroupView: View {
         let name : String = self.groupName
         let description : String = self.description
         let users : [String] = [Auth.auth().currentUser?.email ?? ""]
+        var ids : [String] = []
         
         //Image isnt nil
         guard image != nil else {
@@ -164,14 +165,45 @@ struct AddGroupView: View {
             if error == nil && metadata != nil {
                 let db = Firestore.firestore()
                 let id = db.collection("group").document().documentID
+                let sid = db.collection("drinksSession").document().documentID
                 db.collection("group").document(id).setData([
                     "name": name,
                     "description": description,
                     "id": id,
                     "pic": path,
-                    "users": users
+                    "users": users,
+                    "sessionID": sid
                 ])
                 addDataManager.addGroupWithID(groupID: id, dataManager: dataManager)
+                
+                db.collection("drinksSession").document(sid).setData([
+                    "id": sid,
+                    "alldrinks": []
+                ])
+                
+                let query = db.collection("user").whereField("id", isEqualTo: Auth.auth().currentUser?.email ?? "")
+                    query.getDocuments { snapshot, error in
+                    guard error == nil else {
+                        print(error!.localizedDescription)
+                        return
+                    }
+                    if let snapshot = snapshot {
+                        let data = snapshot.documents[0].data()
+                        let sids : [String] = data["sessions"] as? [String] ?? [""]
+                        
+                        for sid in sids {
+                            ids.append(sid)
+                        }
+                        ids.append(sid)
+                        db.collection("user").document(Auth.auth().currentUser?.uid ?? "").updateData([
+                            "sessions": ids
+                        ])
+                    }
+                    
+                }
+                
+                
+                
             }
         }
         

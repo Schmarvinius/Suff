@@ -18,7 +18,7 @@ class DrinkDB: ObservableObject{
     
     
     init() {
-        fetchDrinks()
+        //fetchDrinks()
         //fetchSessions()
     }
     
@@ -50,12 +50,14 @@ class DrinkDB: ObservableObject{
         }
     }*/
     
+    //Get all personal drinks form group
     func fetchDrinks() {
         drinks.removeAll()
         let db = Firestore.firestore()
         let ref = db.collection("user")
         let user = Auth.auth().currentUser
         
+        //Get users sessions
         if let user = user {
             let email : String = user.email ?? "Fehler"
             let query = ref.whereField("id", isEqualTo: email)
@@ -68,6 +70,7 @@ class DrinkDB: ObservableObject{
                     let data = snapshot.documents[0].data()
                     let sessionIDs : [String] = data["sessions"] as? [String] ?? [""]
                     
+                    //get all drinks from one session
                     for sessionID in sessionIDs {
                         let query = db.collection("drinksSession").whereField("id", isEqualTo: sessionID)
                         query.getDocuments { snapshot,error in
@@ -76,9 +79,10 @@ class DrinkDB: ObservableObject{
                                 return
                             }
                             if let snapshot = snapshot {
-                                let data = snapshot.document[0].data()
+                                let data = snapshot.documents[0].data()
                                 let ids : [String]  = data["alldrinks"] as? [String] ?? [""]
                                 
+                                //get each drink information
                                 for id in ids {
                                     let query = db.collection("drink").whereField("id", isEqualTo: id)
                                     query.getDocuments { snapshot,error in
@@ -89,16 +93,17 @@ class DrinkDB: ObservableObject{
                                         if let snapshot = snapshot {
                                             //let id = db.collection("dirnk").document().documentID
                                             
-                                            let data = snapshot.document.data()
+                                            let data = snapshot.documents[0].data()
                                             
                                             let id = data["id"] as? String ?? ""
                                             let name = data["name"] as? String ?? ""
                                             let volume = data["volume"] as? Int ?? 0
                                             let pic = data["pic"] as? String ?? ""
+                                            
+                                            self.drinks.append(Drink(id: id, name: name, pic: pic, volume: volume))
                                         }
                                     }
                                 }
-                            //get all drinks
                             }
                         }
                     }
