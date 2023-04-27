@@ -35,7 +35,6 @@ struct AddChatView: View {
                 }
             }
                 .navigationTitle("Add Chat")
-            
         }
        
     }
