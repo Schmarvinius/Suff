@@ -158,7 +158,7 @@ struct DrinkView: View {
                     
                     let fileRef = storageRef.child(path)
                     
-                    fileRef.getData(maxSize: 5 * 1024 * 1024) { data, err in
+                    fileRef.getData(maxSize: 1 * 1024 * 1024) { data, err in
                         if err == nil && data != nil {
                             if let image = UIImage(data: data!) {
                                 DispatchQueue.main.async {

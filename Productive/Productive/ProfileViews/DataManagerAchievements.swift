@@ -49,7 +49,7 @@ class DataManagerAchievements: ObservableObject {
                 
                 let storageRef = Storage.storage().reference()
                 let fileref = storageRef.child(path)
-                fileref.getData(maxSize: 5 * 1024 * 1024) { dat, err in
+                fileref.getData(maxSize: 1 * 1024 * 1024) { dat, err in
                     if err == nil && dat != nil {
                         self.userImage = UIImage(data: dat!)
                     }
@@ -79,7 +79,7 @@ class DataManagerAchievements: ObservableObject {
                 //get reference to profile picture in firebase storage
                 let storageRef = Storage.storage().reference()
                 let fileref = storageRef.child(self.path)
-                fileref.getData(maxSize: 5 * 1024 * 1024) { dat, err in
+                fileref.getData(maxSize: 1 * 1024 * 1024) { dat, err in
                     if err == nil && dat != nil {
                         self.image = UIImage(data: dat!)
                         self.oldImage = UIImage(data: dat!)
