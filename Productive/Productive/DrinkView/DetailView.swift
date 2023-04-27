@@ -97,7 +97,7 @@ struct DetailView: View {
             if err == nil && snapshot != nil {
                 let storageRef = Storage.storage().reference()
                 let fileRef = storageRef.child(pic)
-                fileRef.getData(maxSize: 5 * 1024 * 1024) { data, err in
+                fileRef.getData(maxSize: 1 * 1024 * 1024) { data, err in
                     if err == nil && data != nil {
                         if let image = UIImage(data: data!) {
                             DispatchQueue.main.async {
