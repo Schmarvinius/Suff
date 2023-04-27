@@ -32,6 +32,8 @@ struct DrinkView: View {
         Drink(id: "10", name: "Test10", pic: "DrinksImages/F534618C-71FA-496B-A2EF-2596A49E8886.jpg", volume: 250),
     ]
     
+    @State var session : String = "yqpUTddjiglEiREZ7IMl"
+    
     let columns = [GridItem(.flexible()), GridItem(.flexible())]
     
     @State var isInGroup : Bool = false
@@ -42,7 +44,7 @@ struct DrinkView: View {
         
         
         
-        if manager.getString(key: "currentGroup") == "" {
+        if /*manager.getString(key: "currentGroup")*/session != "" {
             Joined
         } else {
             notJoined
