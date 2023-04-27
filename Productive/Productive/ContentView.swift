@@ -27,6 +27,7 @@ struct ContentView: View {
                 }
                 .environmentObject(dataManager)
                 .environmentObject(addDataManager)
+                .environmentObject(dataManagerAch)
             HistoryView()
                 .tabItem{
                     Label("History", systemImage: "placeholdertext.fill")
