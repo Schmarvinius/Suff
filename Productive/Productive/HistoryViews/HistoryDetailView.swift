@@ -9,7 +9,7 @@ import SwiftUI
 
 struct HistoryDetailView: View {
     @State private var group: Group
-    @State private var isUser = true
+    @State private var isUser = false
     @State private var groupUsers : [String]
     @State private var isOnDetail = false
     @EnvironmentObject var dataManagerAch: DataManagerAchievements
@@ -23,10 +23,10 @@ struct HistoryDetailView: View {
     var body: some View {
             VStack {
                 Picker(selection: $isUser, label: Text("Picker here")){
+                    Text("Overview")
+                        .tag(false)
                     Text("User")
                         .tag(true)
-                    Text("Statistics")
-                        .tag(false)
                 }
                 .pickerStyle(SegmentedPickerStyle())
             .padding()
@@ -34,7 +34,7 @@ struct HistoryDetailView: View {
                     contentUser
                 }
                 else {
-                    contentStats
+                    contentOverview
                 }
             }
            
@@ -65,8 +65,12 @@ struct HistoryDetailView: View {
             }
         
     }
-    var contentStats: some View {
-        Text("Hello Stats")
+    var contentOverview: some View {
+        List {
+            Section(header: Text("Description")) {
+                Text(group.desc)
+            }
+        }
     }
 }
 

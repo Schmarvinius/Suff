@@ -98,7 +98,8 @@ class DataManager: ObservableObject {
                                     let id = data["id"] as? String ?? ""
                                     let name = data["name"] as? String ?? ""
                                     let userIDs:[String] = data["users"] as? [String] ?? [""]
-                                    let group = Group(id: id, name: name, userIDs: userIDs)
+                                    let desc = data["description"] as? String ?? ""
+                                    let group = Group(id: id, name: name, userIDs: userIDs, desc: desc)
                                     self.groups.append(group)
                                 }
                             }
