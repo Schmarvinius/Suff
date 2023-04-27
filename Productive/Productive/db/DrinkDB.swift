@@ -14,41 +14,10 @@ import FirebaseAuth
 class DrinkDB: ObservableObject{
     
     @Published var drinks: [Drink] = []
-    //@Published var sessions: [Sessions] = []
     
     
     init() {
-        fetchDrinks()
-        //fetchSessions()
     }
-    
-    //get user
-    //get sessionID
-    //load all dirnks from session
-    
-    /*func fetchDrinks() {
-        drinks.removeAll()
-        let db = Firestore.firestore()
-        let ref = db.collection("drink")
-        ref.getDocuments { snapshot, error in
-            guard error == nil else {
-                print(error!.localizedDescription)
-                return
-            }
-            if let snapshot = snapshot {
-                for document in snapshot.documents {
-                    let data = document.data()
-                    
-                    let id = data["id"] as? String ?? ""
-                    let name = data["name"] as? String ?? ""
-                    let volume = data["volume"] as? Int ?? 0
-                    let pic = data["pic"] as? String ?? ""
-                        
-                    self.drinks.append(Drink(id: id, name: name, pic: pic, volume: volume))
-            }
-            }
-        }
-    }*/
     
     //Get all personal drinks form group
     func fetchDrinks() {
@@ -72,7 +41,7 @@ class DrinkDB: ObservableObject{
                     
                     //get all drinks from one session
                     //for sessionID in sessionIDs {
-                        let query = db.collection("drinksSession").whereField("id", isEqualTo: "yqpUTddjiglEiREZ7IMl"/*sessionID*/)
+                    let query = db.collection("drinksSession").whereField("id", isEqualTo: "yqpUTddjiglEiREZ7IMl"/*sessionID MyLocalStorage().getValue(key: "currentSession")*/)
                         query.getDocuments { snapshot,error in
                             guard error == nil else {
                                 print(error!.localizedDescription)
@@ -109,6 +78,46 @@ class DrinkDB: ObservableObject{
                     }
                 }
             }
+        }
+    }
+    
+    func fetchDrinksWSID(sID: String) {
+        drinks.removeAll()
+        let db = Firestore.firestore()
+        let query = db.collection("drinksSession").whereField("id", isEqualTo: sID/*sessionID MyLocalStorage().getValue(key: "currentSession")*/)
+            query.getDocuments { snapshot,error in
+                guard error == nil else {
+                    print(error!.localizedDescription)
+                    return
+                }
+                if let snapshot = snapshot {
+                    let data = snapshot.documents[0].data()
+                    let ids : [String]  = data["alldrinks"] as? [String] ?? [""]
+                    
+                    //get each drink information
+                    for id in ids {
+                        let query = db.collection("drink").whereField("id", isEqualTo: id)
+                        query.getDocuments { snapshot,error in
+                            guard error == nil else {
+                                print(error!.localizedDescription)
+                                return
+                            }
+                            if let snapshot = snapshot {
+                                //let id = db.collection("dirnk").document().documentID
+                                
+                                let data = snapshot.documents[0].data()
+                                
+                                let id = data["id"] as? String ?? ""
+                                let name = data["name"] as? String ?? ""
+                                let volume = data["volume"] as? Int ?? 0
+                                let pic = data["pic"] as? String ?? ""
+                                
+                                self.drinks.append(Drink(id: id, name: name, pic: pic, volume: volume))
+                            }
+                        }
+                    }
+                }
+//                        }
         }
     }
 }

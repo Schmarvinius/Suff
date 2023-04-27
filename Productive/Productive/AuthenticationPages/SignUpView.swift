@@ -17,7 +17,7 @@ struct SignUpView: View {
     @State private var accountExists: Bool = false;
     @State private var whichView: Int32 = 0;
     
-    let manager = CacheManager.instance
+    //let manager = CacheManager.instance
     
     var body: some View {
         //if(isSignedUp){
@@ -40,6 +40,7 @@ struct SignUpView: View {
         NavigationView{
             VStack{
                 Image("IconTestDoner")
+                    .cornerRadius(20)
                 Spacer()
                 HStack {
                     Image(systemName: "person")
@@ -127,8 +128,8 @@ struct SignUpView: View {
                         if err != nil {
                             print(err!.localizedDescription)
                         }
-                        manager.addString(value: password, key: "password")
-                        manager.addString(value: email, key: "email")
+                        MyLocalStorage().setValue(key: "email", value: email)
+                        MyLocalStorage().setValue(key: "password", value: password)
                         self.isSignedUp.toggle()
                         self.whichView = 1
                     }

@@ -11,9 +11,8 @@ import FirebaseAuth
 struct WelcomePageView: View {
     
     var body: some View {
-        let manager = CacheManager.instance
-        
-        if isAuthenticated(email: manager.getString(key: "email"), password: manager.getString(key: "password")) {
+                
+        if isAuthenticated(email: MyLocalStorage().getValue(key: "email"), password: MyLocalStorage().getValue(key: "password")) {
             ContentView()
         } else {
             main
@@ -21,9 +20,6 @@ struct WelcomePageView: View {
         
     }
     init() {
-        let manager = CacheManager.instance
-        
-        //isAuthenticated(email: manager.getString(key: "email"), password: manager.getString(key: "password"))
     }
     func isAuthenticated(email: String, password: String) -> Bool {
         var auth : Bool = false
@@ -54,6 +50,7 @@ struct WelcomePageView: View {
                 VStack {
                     
                     Image("IconTestDoner")
+                        .cornerRadius(20)
                         
                     Spacer()
                     Text("Welcome!")

@@ -6,48 +6,57 @@
 //
 
 import SwiftUI
+import FirebaseFirestore
 
 
 
 struct GroupList: View {
     
     @EnvironmentObject var dataManager : DataManager
+    @EnvironmentObject var drinkDB: DrinkDB
     
-    let manager = CacheManager.instance
-    
-    let list: [Group] = [
-        Group(id: "1", name: "besteGruppe", userIDs: ["till@till.de", "yannis@yannis.de","marvin@marvin.de"]),
-        Group(id: "2", name: "besteGruppe", userIDs: ["till@till.de", "yannis@yannis.de","marvin@marvin.de"]),
-        Group(id: "3", name: "besteGruppe", userIDs: ["till@till.de", "yannis@yannis.de","marvin@marvin.de"]),
-        Group(id: "4", name: "besteGruppe", userIDs: ["till@till.de", "yannis@yannis.de","marvin@marvin.de"])
-    ]
+    //let manager = CacheManager.instance
     
     var body: some View {
-        
-        NavigationView {
-            List (dataManager.groups, id: \.id) {group in
-                NavigationLink(destination: DrinkView()) {
-                    HStack{
-                        Image(systemName: "person.fill")
-                            .font(.system(size: 40))
-                            .foregroundColor(Color.black)
-                        Text(group.name)
-                            .onTapGesture {
-                                print("tapped")
-                                manager.addString(value: group.id, key: "currentGroup")
-                                let test = manager.getString(key: "currentGroup")
-                            }
-                    }
-                    
+        List (dataManager.groups, id: \.id) {group in
+            Button {
+                MyLocalStorage().setValue(key: "currentSession", value: getSession(gid: group.id))
+                let test2 = group.id
+                let test = getSession(gid: group.id)
+                drinkDB.fetchDrinksWSID(sID: MyLocalStorage().getValue(key: "currentSession"))
+            } label: {
+                HStack{
+                    Image(systemName: "person.fill")
+                        .font(.system(size: 40))
+                        .foregroundColor(Color.black)
+                    Text(group.name)
                 }
-                
             }
         }
     }
     
-    var test: some View{
-        Text("HI")
+    
+    //function is returning without
+    
+    func getSession(gid: String) -> String {
+        let db = Firestore.firestore()
+        let ref = db.collection("drinksSession")
+        let query = ref.whereField("gid", isEqualTo: gid)
+        var id : String = "yqpUTddjiglEiREZ7IMl"
+        query.getDocuments { snapshot, error in
+            guard error == nil else {
+                print(error!.localizedDescription)
+                return
+            }
+            if let snapshot = snapshot {
+                let data = snapshot.documents[0].data()
+                id = data["gid"] as? String ?? ""
+            }
+        }
+        return id
+        
     }
+
 }
 
 struct GroupList_Previews: PreviewProvider {
