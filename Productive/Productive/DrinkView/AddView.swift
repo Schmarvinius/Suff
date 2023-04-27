@@ -144,6 +144,7 @@ struct AddView: View {
         let name : String = name
         let vol : Int = vol
         
+        var alldrinks : [String] = []
         
         //Image isnt nil
         guard image != nil else {
@@ -153,7 +154,7 @@ struct AddView: View {
         //create reference
         let storageRef = Storage.storage().reference()
         
-        let imageData = image!.jpegData(compressionQuality: 0.8)
+        let imageData = image!.jpegData(compressionQuality: 0.1)
         
         guard imageData != nil else {
             return
@@ -174,8 +175,29 @@ struct AddView: View {
                     "id": id,
                     "pic": path
                 ])
+                
+                let query = db.collection("drinksSession").whereField("id", isEqualTo: "yqpUTddjiglEiREZ7IMl")
+                    query.getDocuments { snapshot, error in
+                    guard error == nil else {
+                        print(error!.localizedDescription)
+                        return
+                    }
+                    if let snapshot = snapshot {
+                        let data = snapshot.documents[0].data()
+                        let drinks : [String] = data["alldrinks"] as? [String] ?? [""]
+                        for drink in drinks {
+                            alldrinks.append(drink)
+                        }
+                    }
+                }
+                alldrinks.append(id)
                 // add new drink to drinksSession
-                db.collection("drinksSession")
+                db.collection("drinksSession").document("yqpUTddjiglEiREZ7IMl").updateData([
+                    "alldrinks": alldrinks
+                ])
+            }
+            else {
+                print(error!.localizedDescription)
             }
         }
     }

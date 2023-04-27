@@ -71,8 +71,8 @@ class DrinkDB: ObservableObject{
                     let sessionIDs : [String] = data["sessions"] as? [String] ?? [""]
                     
                     //get all drinks from one session
-                    for sessionID in sessionIDs {
-                        let query = db.collection("drinksSession").whereField("id", isEqualTo: sessionID)
+                    //for sessionID in sessionIDs {
+                        let query = db.collection("drinksSession").whereField("id", isEqualTo: "yqpUTddjiglEiREZ7IMl"/*sessionID*/)
                         query.getDocuments { snapshot,error in
                             guard error == nil else {
                                 print(error!.localizedDescription)
@@ -105,7 +105,7 @@ class DrinkDB: ObservableObject{
                                     }
                                 }
                             }
-                        }
+//                        }
                     }
                 }
             }
