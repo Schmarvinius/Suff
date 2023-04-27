@@ -139,7 +139,7 @@ struct DrinkView: View {
     }
 
     
-    func retrieveImages() {
+    /*func retrieveImages() {
         let db = Firestore.firestore()
         
         db.collection("drink").getDocuments { snapshot, err in
@@ -170,7 +170,7 @@ struct DrinkView: View {
                 }
             }
         }
-    }
+    }*/
 }
 
 struct DrinkView_Previews: PreviewProvider {
