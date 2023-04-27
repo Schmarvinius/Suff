@@ -141,9 +141,10 @@ class DataManager: ObservableObject {
                                         let firstname = data["firstname"] as? String ?? ""
                                         let lastname = data["lastname"] as? String ?? ""
                                         let groups:[String] = data["groups"] as? [String] ?? [""]
+                                        let weight = data["weight"] as? String ?? ""
+                                        let height = data["height"] as? String ?? ""
                                         
-                                        
-                                        let user = User(id: id, firstname: firstname, lastname: lastname, groupIDs: groups)
+                                        let user = User(id: id, firstname: firstname, lastname: lastname, groupIDs: groups, height: height, weight: weight)
                                         self.friends.append(user)
                                     }
                                 }
@@ -192,9 +193,10 @@ class DataManager: ObservableObject {
                                         let firstname = data["firstname"] as? String ?? ""
                                         let lastname = data["lastname"] as? String ?? ""
                                         let groups:[String] = data["groups"] as? [String] ?? [""]
+                                        let height = data["height"] as? String ?? ""
+                                        let weight = data["weight"] as? String ?? ""
                                         
-                                        
-                                        let user = User(id: id, firstname: firstname, lastname: lastname, groupIDs: groups)
+                                        let user = User(id: id, firstname: firstname, lastname: lastname, groupIDs: groups, height: height, weight: weight)
                                         self.chats.append(user)
                                     }
                                 }
