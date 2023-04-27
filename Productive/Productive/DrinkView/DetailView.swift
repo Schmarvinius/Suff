@@ -32,13 +32,13 @@ struct DetailView: View {
             NavigationView(){
                 ZStack{
                     VStack{
-                        if retrievedImage != nil {
+                        /*if retrievedImage != nil {
                             Image(uiImage: retrievedImage!)
                                 .resizable()
                                 .frame(maxWidth: 330, maxHeight: 330)
                                 .cornerRadius(20)
                                 .aspectRatio(contentMode: .fill)
-                        } else {
+                        } else {*/
                             ZStack{
                                 Rectangle()
                                     .frame(maxWidth: 330, maxHeight: 330)
@@ -48,7 +48,7 @@ struct DetailView: View {
                                     .scaleEffect(2)
                             }
                             
-                        }
+                        
                         Form{
                             Section (header: Text("Information")){
                                 HStack{
@@ -85,19 +85,19 @@ struct DetailView: View {
                 .navigationBarTitleDisplayMode(.inline)
             }
             .onAppear {
-                retrievephoto(pic: pic)
+                //retrievephoto(pic: pic)
             }
         
     }
     
-    func retrievephoto(pic: String) {
+    /*func retrievephoto(pic: String) {
         let db = Firestore.firestore()
         
         db.collection("drink").getDocuments { snapshot, err in
             if err == nil && snapshot != nil {
                 let storageRef = Storage.storage().reference()
                 let fileRef = storageRef.child(pic)
-                fileRef.getData(maxSize: 5 * 1024 * 1024) { data, err in
+                fileRef.getData(maxSize: 1 * 1024 * 1024) { data, err in
                     if err == nil && data != nil {
                         if let image = UIImage(data: data!) {
                             DispatchQueue.main.async {
@@ -108,7 +108,7 @@ struct DetailView: View {
                 }
             }
         }
-    }
+    }*/
 }
 
 struct DetailView_Previews: PreviewProvider {

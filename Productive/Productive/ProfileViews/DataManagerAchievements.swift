@@ -47,13 +47,13 @@ class DataManagerAchievements: ObservableObject {
                 
                 let path = data["pic"] as? String ?? ""
                 
-                let storageRef = Storage.storage().reference()
-                let fileref = storageRef.child(path)
-                fileref.getData(maxSize: 5 * 1024 * 1024) { dat, err in
-                    if err == nil && dat != nil {
-                        self.userImage = UIImage(data: dat!)
-                    }
-                }
+//                let storageRef = Storage.storage().reference()
+//                let fileref = storageRef.child(path)
+//                fileref.getData(maxSize: 5 * 1024 * 1024) { dat, err in
+//                    if err == nil && dat != nil {
+//                        self.userImage = UIImage(data: dat!)
+//                    }
+//                }
             }
         }
     }
@@ -77,66 +77,66 @@ class DataManagerAchievements: ObservableObject {
                 self.path = data["pic"] as! String
                 
                 //get reference to profile picture in firebase storage
-                let storageRef = Storage.storage().reference()
-                let fileref = storageRef.child(self.path)
-                fileref.getData(maxSize: 5 * 1024 * 1024) { dat, err in
-                    if err == nil && dat != nil {
-                        self.image = UIImage(data: dat!)
-                        self.oldImage = UIImage(data: dat!)
-                    }
-                }
+//                let storageRef = Storage.storage().reference()
+//                let fileref = storageRef.child(self.path)
+//                fileref.getData(maxSize: 5 * 1024 * 1024) { dat, err in
+//                    if err == nil && dat != nil {
+//                        self.image = UIImage(data: dat!)
+//                        self.oldImage = UIImage(data: dat!)
+//                    }
+//                }
             }
         }
     }
     func updateUserData(){
         //return if no image is given
-        guard self.image != nil else {
-            return
-        }
-        let storageRef = Storage.storage().reference()
-        let imageData = self.image!.jpegData(compressionQuality: 0.1)
-        
-        guard imageData != nil else {
-            return
-        }
-        //specify file name
-        let path = "ProfilePictures/\(UUID().uuidString).jpg"
-        let fileRef = storageRef.child(path)
+//        guard self.image != nil else {
+//            return
+//        }
+//        let storageRef = Storage.storage().reference()
+//        let imageData = self.image!.jpegData(compressionQuality: 0.1)
+//
+//        guard imageData != nil else {
+//            return
+//        }
+//        //specify file name
+//        let path = "ProfilePictures/\(UUID().uuidString).jpg"
+//        let fileRef = storageRef.child(path)
         
         
         //if profile picture has been changed, it will be updated in the database and the old will be deleted
-        if self.oldImage?.jpegData(compressionQuality: 0.1) != self.image?.jpegData(compressionQuality: 0.1) {
-            //delete old profile picture
-            let oldfileRef = storageRef.child(self.path)
-            oldfileRef.delete { err in
-                if err != nil {
-                    print(err!.localizedDescription)
-                }
-            }
-            self.path = path
-            //upload new profile picture and other changes to database / storage
-            fileRef.putData(imageData!, metadata: nil) { metadata, error in
-                if error == nil && metadata != nil {
-                    let id = Auth.auth().currentUser!.uid
-                    let db = Firestore.firestore()
-                    let ref = db.collection("user").document(id)
-                    ref.updateData([
-                        "firstname": self.firstname,
-                        "lastname": self.lastname,
-                        "weight": self.weight,
-                        "height": self.height,
-                        "pic": path
-                    ]) { err in
-                        if let err = err {
-                            print("Error updating document: \(err)")
-                        } else {
-                            print("Document successfully updated")
-                        }
-                    }
-                }
-            }
-        }
-        else {
+//        if self.oldImage?.jpegData(compressionQuality: 0.1) != self.image?.jpegData(compressionQuality: 0.1) {
+//            //delete old profile picture
+//            let oldfileRef = storageRef.child(self.path)
+//            oldfileRef.delete { err in
+//                if err != nil {
+//                    print(err!.localizedDescription)
+//                }
+//            }
+//            self.path = path
+//            //upload new profile picture and other changes to database / storage
+//            fileRef.putData(imageData!, metadata: nil) { metadata, error in
+//                if error == nil && metadata != nil {
+//                    let id = Auth.auth().currentUser!.uid
+//                    let db = Firestore.firestore()
+//                    let ref = db.collection("user").document(id)
+//                    ref.updateData([
+//                        "firstname": self.firstname,
+//                        "lastname": self.lastname,
+//                        "weight": self.weight,
+//                        "height": self.height,
+//                        "pic": path
+//                    ]) { err in
+//                        if let err = err {
+//                            print("Error updating document: \(err)")
+//                        } else {
+//                            print("Document successfully updated")
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//        else {
             //only update the other attributes if the profile picture remains the same
             let id = Auth.auth().currentUser!.uid
             let db = Firestore.firestore()
@@ -153,7 +153,7 @@ class DataManagerAchievements: ObservableObject {
                     print("Document successfully updated")
                 }
             }
-        }
+//        }
         
     }
     
