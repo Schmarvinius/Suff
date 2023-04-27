@@ -20,19 +20,19 @@ struct GroupView: View {
         NavigationView{
             VStack(){
                 HStack(){
-                    if(dataManagerAch.image == nil) {
+                   // if(dataManagerAch.image == nil) {
                         Image("IconTestDoner")
                             .resizable()
                             .clipShape(Circle())
                             .frame(width: 60, height: 60)
                             .scaledToFit()
-                    } else {
+                   /* } else {
                         Image(uiImage: dataManagerAch.image!)
                             .resizable()
                             .clipShape(Circle())
                             .frame(width:60, height: 60)
                             .scaledToFit()
-                    }
+                    }*/
                     VStack(alignment: .leading, spacing: 4){
                         HStack{
                             Text(dataManager.userFirstname)
