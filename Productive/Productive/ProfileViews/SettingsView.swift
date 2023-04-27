@@ -20,7 +20,6 @@ struct SettingsView: View {
     var body: some View {
         
         NavigationView {
-            VStack {
                 Form {
                     Section(header: Text("Appearance")) {
                         Toggle(isOn: $isDarkModeEnabled) {
@@ -41,19 +40,8 @@ struct SettingsView: View {
                     
                 }
                 
-                }
-                
             }
-            
-                
-                //.navigationBarItems(leading: NavigationLink(destination: ProfileView(), label: {
-                  //  HStack{
-                 //       Image(systemName: "chevron.backward")
-                  //      Text("Profile")
-                   // }
-            //}))
         }
-        //.navigationBarBackButtonHidden(true)
     }
 }
 

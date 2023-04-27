@@ -13,21 +13,30 @@ struct ProfileView: View {
     @State private var email = Auth.auth().currentUser?.email as? String ?? ""
     @State private var showPopover = false
     
-    @State private var items: [GridItem] = Array(repeating: .init(.flexible()), count: 1)
+    
+    @State private var items: [GridItem] = Array(repeating: .init(.flexible()), count: 3)
     
     @EnvironmentObject var dataManagerAch : DataManagerAchievements
    
+    
+    
     var body: some View {
             NavigationView(){
                 VStack (alignment: .leading)  {
                     HStack (alignment: .top) {
-                            
+                        if(dataManagerAch.image == nil) {
                             Image("IconTestDoner")
                                 .resizable()
                                 .clipShape(Circle())
                                 .frame(width: 120, height: 120)
                                 .scaledToFit()
-                        
+                        } else {
+                            Image(uiImage: dataManagerAch.image!)
+                                .resizable()
+                                .clipShape(Circle())
+                                .frame(width: 120, height: 120)
+                                .scaledToFit()
+                        }
                             VStack (alignment: .leading){
                                 Text(dataManagerAch.firstname + " " + dataManagerAch.lastname)
                                     .font(.system(size: 30))
@@ -42,7 +51,7 @@ struct ProfileView: View {
                         .foregroundColor(.black)
                     
                     HStack {
-                        Button(action: {}) {
+                        NavigationLink(destination: EditProfileView()) {
                             Text("Edit Profile")
                                 .frame(minWidth: 0, maxWidth: .infinity)
                                 .font(.system(size: 16))
@@ -69,34 +78,33 @@ struct ProfileView: View {
                     Text("Achievements")
                         .bold()
                         .font(.system(size: 20))
-                    /*LazyVGrid(columns: items, spacing: 20) {
-                        ForEach(dataManagerAch.achievements, id: \.id) { achievement in
-                            Label(achievement.name, systemImage: achievement.img)
-                        }
-                    } */
-                    List(dataManagerAch.achievements, id: \.id){achievement in
-                        NavigationLink(destination: AchievementOverView(achievement: achievement)) {
-                            HStack {
-                                Image(systemName: achievement.img)
-                                    .font(.system(size:20))
-                                .foregroundColor(Color.black)
-                                Text(achievement.name)
+                    ScrollView{
+                        LazyVGrid(columns: items, spacing: 20) {
+                            ForEach(dataManagerAch.achievements, id: \.id) { achievement in
+                                
+                                    NavigationLink(destination: AchievementOverView(achievement: achievement)){
+                                        VStack {
+                                            Image(systemName: achievement.img)
+                                            Text(achievement.name)
+                                        }
+                                        .foregroundColor(.black)
+                                    }
+                                
                             }
                         }
                     }
+                    
+                    Spacer()
                      
                 }
                 .padding(.all)
                 .navigationBarBackButtonHidden(true)
-                .navigationBarItems(leading: Text("Your Profile")
-                    .font(.system(size: 20))
-                    .bold())
+                .navigationTitle("Profile")
+                .navigationBarTitleDisplayMode(.inline)
                 .navigationBarItems(trailing: Button(action: {}, label: {
                     NavigationLink(destination: SettingsView()) {
                         Image(systemName: "gear")
                             .foregroundColor(.black)
-                            .font(.system(size: 16))
-                            .bold()
                     }
                 }))
             }
@@ -106,22 +114,10 @@ struct ProfileView: View {
     
     }
 
-struct AchievementView : View {
-    
-    @State private var ach : Achievement
-    init(achievement: Achievement){
-        self.ach = achievement
-    }
-    
-    var body: some View {
-        Text(ach.name)
-    }
-}
-
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        /*ProfileView()
-            .environmentObject(DataManagerAchievements()) */
-        WelcomePageView()
+        ProfileView()
+            .environmentObject(DataManagerAchievements())
+       // WelcomePageView()
     }
 }
