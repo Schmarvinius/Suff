@@ -42,13 +42,12 @@ class AddDataManager: ObservableObject {
         dataManager.fetchChats()
     }
     
-    func addGroupWithID(groupID : String , dataManager : DataManager){
+    func addUserToGroup(groupID : String, dataManager : DataManager){
         let db = Firestore.firestore()
         let account = Auth.auth().currentUser
-        let uid = account!.uid
         
         // ADD User to users List in Group
-        var ref = db.collection("group")
+        let ref = db.collection("group")
         let group = ref.whereField("id", isEqualTo: groupID)
         group.getDocuments(){snapshot, error in
             guard error == nil else {
@@ -68,13 +67,21 @@ class AddDataManager: ObservableObject {
                         print("Error updating document: \(err)")
                     } else {
                         print("Document successfully updated")
+                        dataManager.fetchGroup()
                     }
                 }
             }
         }
+    }
+    
+    func addGroupWithID(groupID : String , dataManager : DataManager){
+        let db = Firestore.firestore()
+        let account = Auth.auth().currentUser
+        let uid = account!.uid
+        
         //Getting the Group-List of User
         var userGroups: [String] = []
-        ref = db.collection("user")
+        let ref = db.collection("user")
         ref.whereField("id", isEqualTo: account!.email ?? "").getDocuments(){snapshot, error in
             guard error == nil else {
                 print(error!.localizedDescription)

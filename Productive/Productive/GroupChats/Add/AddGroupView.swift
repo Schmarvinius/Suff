@@ -41,6 +41,7 @@ struct AddGroupView: View {
                     
                     
                 Button {
+                    addDataManager.addUserToGroup(groupID: groupID, dataManager: dataManager)
                     addDataManager.addGroupWithID(groupID: groupID, dataManager: dataManager)
                 } label: {
                     Text("Join")
@@ -138,7 +139,6 @@ struct AddGroupView: View {
     func upload(name: String, description: String) {
         let name : String = self.groupName
         let description : String = self.description
-        let id = Auth.auth().currentUser!.uid
         let users : [String] = [Auth.auth().currentUser?.email ?? ""]
         
         //Image isnt nil
@@ -163,6 +163,7 @@ struct AddGroupView: View {
         fileRef.putData(imageData!, metadata: nil) { metadata, error in
             if error == nil && metadata != nil {
                 let db = Firestore.firestore()
+                let id = db.collection("group").document().documentID
                 db.collection("group").document(id).setData([
                     "name": name,
                     "description": description,
