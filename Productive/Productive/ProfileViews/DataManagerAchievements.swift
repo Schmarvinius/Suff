@@ -12,21 +12,55 @@ import FirebaseStorage
 
 class DataManagerAchievements: ObservableObject {
     @Published var achievements: [Achievement] = []
+    @Published var id: String = ""
     @Published var firstname: String = ""
     @Published var lastname: String = ""
     @Published var weight: String = ""
     @Published var height: String = ""
+    @Published var pic: String = ""
     @Published var image: UIImage?
     @Published var oldImage: UIImage?
     @Published var path: String = ""
+    @Published var user: User = User(id: "", firstname: "", lastname: "", groupIDs: [""], height: "", weight: "", pic: "")
+    @Published var userImage: UIImage?
+    
     
     init() {
         fetchAchievements()
         fetchUserData()
+        user = User(id: id, firstname: firstname, lastname: lastname, groupIDs: [""], height: height, weight: weight, pic: pic)
+    }
+    //function to update the user attribute with the given ID from database
+    func updateUser(pID: String){
+        
+        let db = Firestore.firestore()
+        let ref = db.collection("user")
+        ref.whereField("id", isEqualTo: pID).getDocuments { snapshot, error in
+            guard error == nil else {
+                print(error!.localizedDescription)
+                return
+            }
+            if let snapshot = snapshot {
+                let data = snapshot.documents[0].data()
+                
+                self.user = User(id: data["id"] as? String ?? "", firstname: data["firstname"] as? String ?? "", lastname: data["lastname"] as? String ?? "", groupIDs: data["groups"] as? [String] ?? [""], height: data["height"] as? String ?? "", weight: data["weight"] as? String ?? "", pic: data["pic"] as? String ?? "")
+                
+                let path = data["pic"] as? String ?? ""
+                
+                let storageRef = Storage.storage().reference()
+                let fileref = storageRef.child(path)
+                fileref.getData(maxSize: 5 * 1024 * 1024) { dat, err in
+                    if err == nil && dat != nil {
+                        self.userImage = UIImage(data: dat!)
+                    }
+                }
+            }
+        }
     }
     
     func fetchUserData(){
         let email = Auth.auth().currentUser?.email as? String ?? ""
+        self.id = Auth.auth().currentUser?.email as? String ?? ""
         let db = Firestore.firestore()
         let ref = db.collection("user")
         ref.whereField("id", isEqualTo: email).getDocuments() { snapshot, error in

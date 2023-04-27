@@ -18,4 +18,7 @@ struct User: Identifiable {
     var firstname: String
     var lastname: String
     var groupIDs: [String]
+    var height: String
+    var weight: String
+    var pic: String
 }

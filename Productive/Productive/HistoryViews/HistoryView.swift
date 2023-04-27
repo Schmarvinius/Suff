@@ -9,21 +9,32 @@ import SwiftUI
 
 struct HistoryView: View {
     @EnvironmentObject var dataManager: DataManager
+    @EnvironmentObject var dataManagerAch: DataManagerAchievements
     
     var body: some View {
         
         NavigationView {
             List(dataManager.groups, id: \.id){group in
-                NavigationLink {
-                    HistoryDetailView(pGroup: group)
-                } label: {
-                    HStack{
-                        Image(systemName: "person.fill")
-                            .font(.system(size: 40))
-                            .foregroundColor(Color.black)
-                        Text(group.name)
-                    }
+                
+                NavigationLink (destination: HistoryDetailView(pGroup: group)
+                    .environmentObject(dataManagerAch)
+                    .environmentObject(dataManager)) {
+                        HStack{
+                            Image(systemName: "person.fill")
+                            Text(group.name)
+                        }
                 }
+
+                
+//                NavigationLink {
+//                    HistoryDetailView(pGroup: group)
+//                        .environmentObject(dataManagerAch)
+//                } label: {
+//                    HStack{
+//                        Image(systemName: "person.fill")
+//                        Text(group.name)
+//                    }
+//                }
                 
             }
             .navigationTitle("History")
@@ -37,5 +48,6 @@ struct HistoryView_Previews: PreviewProvider {
     static var previews: some View {
         HistoryView()
             .environmentObject(DataManager())
+            .environmentObject(DataManagerAchievements())
     }
 }

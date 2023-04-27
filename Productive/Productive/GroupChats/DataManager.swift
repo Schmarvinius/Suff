@@ -142,9 +142,10 @@ class DataManager: ObservableObject {
                                         let firstname = data["firstname"] as? String ?? ""
                                         let lastname = data["lastname"] as? String ?? ""
                                         let groups:[String] = data["groups"] as? [String] ?? [""]
-                                        
-                                        
-                                        let user = User(id: id, firstname: firstname, lastname: lastname, groupIDs: groups)
+                                        let weight = data["weight"] as? String ?? ""
+                                        let height = data["height"] as? String ?? ""
+                                        let pic = data["pic"] as? String ?? ""
+                                        let user = User(id: id, firstname: firstname, lastname: lastname, groupIDs: groups, height: height, weight: weight, pic: pic)
                                         self.friends.append(user)
                                     }
                                 }
@@ -208,9 +209,10 @@ class DataManager: ObservableObject {
                                         let firstname = data["firstname"] as? String ?? ""
                                         let lastname = data["lastname"] as? String ?? ""
                                         let groups:[String] = data["groups"] as? [String] ?? [""]
-                                        
-                                        
-                                        let user = User(id: id, firstname: firstname, lastname: lastname, groupIDs: groups)
+                                        let height = data["height"] as? String ?? ""
+                                        let weight = data["weight"] as? String ?? ""
+                                        let pic = data["pic"] as? String ?? ""
+                                        let user = User(id: id, firstname: firstname, lastname: lastname, groupIDs: groups, height: height, weight: weight, pic: pic)
                                         self.chats.append(user)
                                     }
                                 }
