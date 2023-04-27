@@ -18,7 +18,7 @@ class DrinkDB: ObservableObject{
     
     
     init() {
-        //fetchDrinks()
+        fetchDrinks()
         //fetchSessions()
     }
     

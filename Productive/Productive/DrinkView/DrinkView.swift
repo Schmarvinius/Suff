@@ -90,8 +90,15 @@ struct DrinkView: View {
                  } label: {
                  HStack{
                  //Image(uiimage: retrievedImage!)
-                 RoundedRectangle(cornerRadius: 10)
-                 .frame(maxWidth: 50, maxHeight: 50)
+                     ZStack{
+                         Rectangle()
+                             .frame(maxWidth: 50, maxHeight: 50)
+                             .cornerRadius(10)
+                         ProgressView()
+                             .progressViewStyle(CircularProgressViewStyle(tint: .gray))
+                             .scaleEffect(1)
+                     }
+                     .padding(.trailing, 5)
                  Text(item.name)
                  }
                  }.frame(height: 50)
@@ -139,7 +146,7 @@ struct DrinkView: View {
     }
 
     
-    func retrieveImages() {
+    /*func retrieveImages() {
         let db = Firestore.firestore()
         
         db.collection("drink").getDocuments { snapshot, err in
@@ -170,7 +177,7 @@ struct DrinkView: View {
                 }
             }
         }
-    }
+    }*/
 }
 
 struct DrinkView_Previews: PreviewProvider {
