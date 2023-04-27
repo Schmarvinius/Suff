@@ -85,12 +85,12 @@ struct DetailView: View {
                 .navigationBarTitleDisplayMode(.inline)
             }
             .onAppear {
-                retrievephoto(pic: pic)
+                //retrievephoto(pic: pic)
             }
         
     }
     
-    func retrievephoto(pic: String) {
+    /*func retrievephoto(pic: String) {
         let db = Firestore.firestore()
         
         db.collection("drink").getDocuments { snapshot, err in
@@ -108,7 +108,7 @@ struct DetailView: View {
                 }
             }
         }
-    }
+    }*/
 }
 
 struct DetailView_Previews: PreviewProvider {
