@@ -13,10 +13,13 @@ struct ProfileView: View {
     @State private var email = Auth.auth().currentUser?.email as? String ?? ""
     @State private var showPopover = false
     
+    
     @State private var items: [GridItem] = Array(repeating: .init(.flexible()), count: 3)
     
     @EnvironmentObject var dataManagerAch : DataManagerAchievements
    
+    
+    
     var body: some View {
             NavigationView(){
                 VStack (alignment: .leading)  {
@@ -84,6 +87,7 @@ struct ProfileView: View {
                                             Image(systemName: achievement.img)
                                             Text(achievement.name)
                                         }
+                                        .foregroundColor(.black)
                                     }
                                 
                             }
@@ -112,8 +116,8 @@ struct ProfileView: View {
 
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        /*ProfileView()
-            .environmentObject(DataManagerAchievements()) */
-        WelcomePageView()
+        ProfileView()
+            .environmentObject(DataManagerAchievements())
+       // WelcomePageView()
     }
 }

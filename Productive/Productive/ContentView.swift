@@ -30,6 +30,7 @@ struct ContentView: View {
                 .tabItem{
                     Label("History", systemImage: "placeholdertext.fill")
                 }
+                .environmentObject(dataManager)
             ProfileView()
                 .tabItem{
                     Label("Profile", systemImage: "person")

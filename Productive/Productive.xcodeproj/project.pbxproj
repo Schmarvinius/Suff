@@ -40,6 +40,8 @@
 		2770238B29F5B5D600F0FC7E /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2770238A29F5B5D600F0FC7E /* DataManager.swift */; };
 		27B0D22A29F581AE001203E8 /* Groups.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B0D22929F581AE001203E8 /* Groups.swift */; };
 		5786968B29F9580100F1762B /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5786968A29F9580100F1762B /* EditProfileView.swift */; };
+		5786968E29FA4F1B00F1762B /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5786968D29FA4F1B00F1762B /* HistoryView.swift */; };
+		5786969029FA50CB00F1762B /* HistoryDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5786968F29FA50CB00F1762B /* HistoryDetailView.swift */; };
 		57D8180E29F6AF16001A14FA /* WelcomePageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D8180B29F6AF16001A14FA /* WelcomePageView.swift */; };
 		57D8180F29F6AF16001A14FA /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D8180C29F6AF16001A14FA /* SignUpView.swift */; };
 		57D8181029F6AF16001A14FA /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D8180D29F6AF16001A14FA /* SignInView.swift */; };
@@ -55,7 +57,6 @@
 		E85E19A729F17AC00018D3E3 /* ProductiveUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E85E19A629F17AC00018D3E3 /* ProductiveUITests.swift */; };
 		E85E19A929F17AC00018D3E3 /* ProductiveUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E85E19A829F17AC00018D3E3 /* ProductiveUITestsLaunchTests.swift */; };
 		E85E19B829F17BC20018D3E3 /* GroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E85E19B729F17BC20018D3E3 /* GroupView.swift */; };
-		E85E19BA29F17BCB0018D3E3 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E85E19B929F17BCB0018D3E3 /* HistoryView.swift */; };
 		E85E19BC29F17BD40018D3E3 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E85E19BB29F17BD40018D3E3 /* SettingsView.swift */; };
 		E85E19BE29F291880018D3E3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E85E19BD29F291880018D3E3 /* GoogleService-Info.plist */; };
 		E897AF3E29F94AA4005B9CD2 /* DrinkDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = E897AF3D29F94AA4005B9CD2 /* DrinkDB.swift */; };
@@ -90,6 +91,8 @@
 		2770238A29F5B5D600F0FC7E /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		27B0D22929F581AE001203E8 /* Groups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Groups.swift; sourceTree = "<group>"; };
 		5786968A29F9580100F1762B /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
+		5786968D29FA4F1B00F1762B /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
+		5786968F29FA50CB00F1762B /* HistoryDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryDetailView.swift; sourceTree = "<group>"; };
 		57D8180A29F6AECA001A14FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		57D8180B29F6AF16001A14FA /* WelcomePageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WelcomePageView.swift; path = AuthenticationPages/WelcomePageView.swift; sourceTree = "<group>"; };
 		57D8180C29F6AF16001A14FA /* SignUpView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignUpView.swift; path = AuthenticationPages/SignUpView.swift; sourceTree = "<group>"; };
@@ -108,7 +111,6 @@
 		E85E19A629F17AC00018D3E3 /* ProductiveUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductiveUITests.swift; sourceTree = "<group>"; };
 		E85E19A829F17AC00018D3E3 /* ProductiveUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductiveUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		E85E19B729F17BC20018D3E3 /* GroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GroupView.swift; path = ../GroupView.swift; sourceTree = "<group>"; };
-		E85E19B929F17BCB0018D3E3 /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
 		E85E19BB29F17BD40018D3E3 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		E85E19BD29F291880018D3E3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; name = "GoogleService-Info.plist"; path = "../../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E897AF3D29F94AA4005B9CD2 /* DrinkDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkDB.swift; sourceTree = "<group>"; };
@@ -193,6 +195,15 @@
 			path = GroupChats;
 			sourceTree = "<group>";
 		};
+		5786968C29FA4EE300F1762B /* HistoryViews */ = {
+			isa = PBXGroup;
+			children = (
+				5786968D29FA4F1B00F1762B /* HistoryView.swift */,
+				5786968F29FA50CB00F1762B /* HistoryDetailView.swift */,
+			);
+			path = HistoryViews;
+			sourceTree = "<group>";
+		};
 		57D8181129F6AF92001A14FA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -236,6 +247,7 @@
 		E85E198A29F17ABF0018D3E3 /* Productive */ = {
 			isa = PBXGroup;
 			children = (
+				5786968C29FA4EE300F1762B /* HistoryViews */,
 				57D8181529F6B546001A14FA /* ProfileViews */,
 				E897AF2E29F94972005B9CD2 /* utils */,
 				E897AF2D29F94968005B9CD2 /* DrinkView */,
@@ -249,7 +261,6 @@
 				E85E198D29F17ABF0018D3E3 /* ContentView.swift */,
 				E85E198F29F17AC00018D3E3 /* Assets.xcassets */,
 				E85E199129F17AC00018D3E3 /* Preview Content */,
-				E85E19B929F17BCB0018D3E3 /* HistoryView.swift */,
 				E85E19BD29F291880018D3E3 /* GoogleService-Info.plist */,
 			);
 			path = Productive;
@@ -473,13 +484,14 @@
 				27426D3C29F92AFB0034C838 /* AddDataManager.swift in Sources */,
 				E85E198E29F17ABF0018D3E3 /* ContentView.swift in Sources */,
 				E897AF4829F94AEE005B9CD2 /* AddView.swift in Sources */,
-				E85E19BA29F17BCB0018D3E3 /* HistoryView.swift in Sources */,
 				E85E19BC29F17BD40018D3E3 /* SettingsView.swift in Sources */,
 				57D8181729F6B56C001A14FA /* ProfileView.swift in Sources */,
 				E85E19B829F17BC20018D3E3 /* GroupView.swift in Sources */,
+				5786968E29FA4F1B00F1762B /* HistoryView.swift in Sources */,
 				57D8181B29F80149001A14FA /* AchievementOverView.swift in Sources */,
 				E85E198C29F17ABF0018D3E3 /* ProductiveApp.swift in Sources */,
 				E897AF4C29F94B30005B9CD2 /* ImagePicker.swift in Sources */,
+				5786969029FA50CB00F1762B /* HistoryDetailView.swift in Sources */,
 				27426D3729F7D9680034C838 /* AddGroupView.swift in Sources */,
 				E897AF4429F94AD7005B9CD2 /* DrinkView.swift in Sources */,
 				E897AF4029F94AAB005B9CD2 /* drinks.swift in Sources */,
