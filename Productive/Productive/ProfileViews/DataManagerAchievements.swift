@@ -90,18 +90,18 @@ class DataManagerAchievements: ObservableObject {
     }
     func updateUserData(){
         //return if no image is given
-        guard self.image != nil else {
-            return
-        }
-        let storageRef = Storage.storage().reference()
-        let imageData = self.image!.jpegData(compressionQuality: 0.1)
-        
-        guard imageData != nil else {
-            return
-        }
-        //specify file name
-        let path = "ProfilePictures/\(UUID().uuidString).jpg"
-        let fileRef = storageRef.child(path)
+//        guard self.image != nil else {
+//            return
+//        }
+//        let storageRef = Storage.storage().reference()
+//        let imageData = self.image!.jpegData(compressionQuality: 0.1)
+//
+//        guard imageData != nil else {
+//            return
+//        }
+//        //specify file name
+//        let path = "ProfilePictures/\(UUID().uuidString).jpg"
+//        let fileRef = storageRef.child(path)
         
         
         //if profile picture has been changed, it will be updated in the database and the old will be deleted

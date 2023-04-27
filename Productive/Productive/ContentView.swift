@@ -30,7 +30,7 @@ struct ContentView: View {
                 .environmentObject(dataManagerAch)
             HistoryView()
                 .tabItem{
-                    Label("History", systemImage: "placeholdertext.fill")
+                    Label("History", systemImage: "clock.arrow.circlepath")
                 }
                 .environmentObject(dataManager)
                 .environmentObject(dataManagerAch)
