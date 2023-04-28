@@ -7,11 +7,13 @@
 
 import SwiftUI
 import FirebaseAuth
+import FirebaseStorage
 
 struct GroupView: View {
     @State var isGroup = false
     @State var showAddChat = false
     @State var showAddGroup = false
+    @State var image = UIImage()
     @EnvironmentObject var dataManager: DataManager
     @EnvironmentObject var addDataManager: AddDataManager
     @EnvironmentObject var dataManagerAch : DataManagerAchievements
@@ -20,19 +22,19 @@ struct GroupView: View {
         NavigationView{
             VStack(){
                 HStack(){
-                   // if(dataManagerAch.image == nil) {
+                    if(dataManagerAch.image == nil) {
                         Image("IconTestDoner")
                             .resizable()
                             .clipShape(Circle())
                             .frame(width: 60, height: 60)
                             .scaledToFit()
-                   /* } else {
+                    } else {
                         Image(uiImage: dataManagerAch.image!)
                             .resizable()
                             .clipShape(Circle())
                             .frame(width:60, height: 60)
                             .scaledToFit()
-                    }*/
+                    }
                     VStack(alignment: .leading, spacing: 4){
                         HStack{
                             Text(dataManager.userFirstname)
@@ -150,15 +152,15 @@ struct GroupView: View {
         }
         
     }
-//    func getPic (path : String){
-//        let storageRef = Storage.storage().reference()
-//        let fileref = storageRef.child(path)
-//        fileref.getData(maxSize: 5 * 1024 * 1024) { dat, err in
-//            if err == nil && dat != nil {
-//                self.image = UIImage(data: dat!)
-//            }
-//        }
-//    }
+    func getPic (path : String){
+        let storageRef = Storage.storage().reference()
+        let fileref = storageRef.child(path)
+        fileref.getData(maxSize:  1 * 1024 * 1024) { dat, err in
+            if err == nil && dat != nil {
+                self.image = UIImage(data: dat!)!
+            }
+        }
+    }
     
     
     
