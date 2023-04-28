@@ -42,7 +42,7 @@ class DrinkDB: ObservableObject{
                                         return
                                     }
                                     if let snapshot = snapshot {
-                                        //let id = db.collection("dirnk").document().documentID
+                                        //let id = db.collection("drnk").document().documentID
                                             let test = snapshot.documents.map { data in
                                                 let id = data["id"] as? String ?? ""
                                                 let name = data["name"] as? String ?? ""
@@ -63,7 +63,7 @@ class DrinkDB: ObservableObject{
         }
     }
     
-    @Published var id : [String] = []
+    @Published var id : String = ""
     func getSession(gid: String){
         let db = Firestore.firestore()
         let ref = db.collection("drinksSession")
@@ -74,15 +74,10 @@ class DrinkDB: ObservableObject{
                 return
             }
             if let snapshot = snapshot {
-                DispatchQueue.main.async {
-                    self.id = snapshot.documents.map { data in
-                        return data["gid"] as? String ?? ""
-                    }
-                }
-                
+                let data = snapshot.documents[0].data()
+                self.id = data["id"] as? String ?? ""
             }
         }
-        
     }
 }
     
