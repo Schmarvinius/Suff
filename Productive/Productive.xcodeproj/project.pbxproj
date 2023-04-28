@@ -61,6 +61,8 @@
 		E85E19B829F17BC20018D3E3 /* GroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E85E19B729F17BC20018D3E3 /* GroupView.swift */; };
 		E85E19BC29F17BD40018D3E3 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E85E19BB29F17BD40018D3E3 /* SettingsView.swift */; };
 		E85E19BE29F291880018D3E3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E85E19BD29F291880018D3E3 /* GoogleService-Info.plist */; };
+		E88A2CC429FAC77400B9BB9A /* LocalStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E88A2CC329FAC77400B9BB9A /* LocalStorage.swift */; };
+		E88A2CC629FBA53E00B9BB9A /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E88A2CC529FBA53E00B9BB9A /* NetworkMonitor.swift */; };
 		E897AF3E29F94AA4005B9CD2 /* DrinkDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = E897AF3D29F94AA4005B9CD2 /* DrinkDB.swift */; };
 		E897AF4029F94AAB005B9CD2 /* drinks.swift in Sources */ = {isa = PBXBuildFile; fileRef = E897AF3F29F94AAB005B9CD2 /* drinks.swift */; };
 		E897AF4429F94AD7005B9CD2 /* DrinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E897AF4329F94AD7005B9CD2 /* DrinkView.swift */; };
@@ -119,6 +121,8 @@
 		E85E19B729F17BC20018D3E3 /* GroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GroupView.swift; path = ../GroupView.swift; sourceTree = "<group>"; };
 		E85E19BB29F17BD40018D3E3 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		E85E19BD29F291880018D3E3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; name = "GoogleService-Info.plist"; path = "../../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		E88A2CC329FAC77400B9BB9A /* LocalStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalStorage.swift; sourceTree = "<group>"; };
+		E88A2CC529FBA53E00B9BB9A /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
 		E897AF3D29F94AA4005B9CD2 /* DrinkDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkDB.swift; sourceTree = "<group>"; };
 		E897AF3F29F94AAB005B9CD2 /* drinks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = drinks.swift; sourceTree = "<group>"; };
 		E897AF4329F94AD7005B9CD2 /* DrinkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkView.swift; sourceTree = "<group>"; };
@@ -261,7 +265,6 @@
 				57D8181529F6B546001A14FA /* ProfileViews */,
 				E897AF2E29F94972005B9CD2 /* utils */,
 				E897AF2D29F94968005B9CD2 /* DrinkView */,
-				57D8180A29F6AECA001A14FA /* Info.plist */,
 				57D8180D29F6AF16001A14FA /* SignInView.swift */,
 				57D8180C29F6AF16001A14FA /* SignUpView.swift */,
 				E897AF2C29F94962005B9CD2 /* db */,
@@ -272,6 +275,7 @@
 				E85E198F29F17AC00018D3E3 /* Assets.xcassets */,
 				E85E199129F17AC00018D3E3 /* Preview Content */,
 				E85E19BD29F291880018D3E3 /* GoogleService-Info.plist */,
+				57D8180A29F6AECA001A14FA /* Info.plist */,
 			);
 			path = Productive;
 			sourceTree = "<group>";
@@ -326,6 +330,8 @@
 			children = (
 				E897AF4F29F984A0005B9CD2 /* Cache.swift */,
 				E897AF4B29F94B30005B9CD2 /* ImagePicker.swift */,
+				E88A2CC329FAC77400B9BB9A /* LocalStorage.swift */,
+				E88A2CC529FBA53E00B9BB9A /* NetworkMonitor.swift */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -499,6 +505,7 @@
 				E897AF4E29F9779A005B9CD2 /* GroupList.swift in Sources */,
 				27688CD929FAE8EA00C81C5B /* ChatView.swift in Sources */,
 				E85E19BC29F17BD40018D3E3 /* SettingsView.swift in Sources */,
+				E88A2CC429FAC77400B9BB9A /* LocalStorage.swift in Sources */,
 				57D8181729F6B56C001A14FA /* ProfileView.swift in Sources */,
 				E85E19B829F17BC20018D3E3 /* GroupView.swift in Sources */,
 				5786968E29FA4F1B00F1762B /* HistoryView.swift in Sources */,
@@ -507,6 +514,7 @@
 				E897AF5029F984A0005B9CD2 /* Cache.swift in Sources */,
 				E897AF4C29F94B30005B9CD2 /* ImagePicker.swift in Sources */,
 				5786969029FA50CB00F1762B /* HistoryDetailView.swift in Sources */,
+				E88A2CC629FBA53E00B9BB9A /* NetworkMonitor.swift in Sources */,
 				27426D3729F7D9680034C838 /* AddGroupView.swift in Sources */,
 				E897AF4429F94AD7005B9CD2 /* DrinkView.swift in Sources */,
 				E897AF4029F94AAB005B9CD2 /* drinks.swift in Sources */,

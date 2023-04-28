@@ -7,11 +7,14 @@
 
 import SwiftUI
 import FirebaseAuth
+import FirebaseFirestore
 
 struct GroupView: View {
     @State var isGroup = false
     @State var showAddChat = false
     @State var showAddGroup = false
+    
+    @EnvironmentObject var drinkDB : DrinkDB
     @EnvironmentObject var dataManager: DataManager
     @EnvironmentObject var addDataManager: AddDataManager
     @EnvironmentObject var dataManagerAch : DataManagerAchievements
@@ -125,7 +128,9 @@ struct GroupView: View {
     var contentGroups: some View {
         List(dataManager.groups, id: \.id){group in
             Button(action:{
-                print("HI")
+                drinkDB.getSession(gid: group.id)
+                MyLocalStorage().setValue(key: "currentSession", value: drinkDB.id[0])
+                print("current Session updated: " + drinkDB.id[0])
             }, label:{
                 VStack{
                     HStack{
@@ -150,6 +155,7 @@ struct GroupView: View {
         }
         
     }
+    
 //    func getPic (path : String){
 //        let storageRef = Storage.storage().reference()
 //        let fileref = storageRef.child(path)
@@ -170,6 +176,7 @@ struct GroupView: View {
                 .environmentObject(DataManager())
                 .environmentObject(AddDataManager())
                 .environmentObject(DataManagerAchievements())
+                .environmentObject(DrinkDB())
                 
         }
     }
