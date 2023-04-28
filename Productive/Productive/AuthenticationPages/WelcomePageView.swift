@@ -12,7 +12,7 @@ struct WelcomePageView: View {
     
     var body: some View {
                 
-        if isAuthenticated(email: MyLocalStorage().getValue(key: "email"), password: MyLocalStorage().getValue(key: "password")) {
+        if auth {
             ContentView()
         } else {
             main
@@ -20,24 +20,26 @@ struct WelcomePageView: View {
         
     }
     init() {
+        isAuthenticated(email: MyLocalStorage().getValue(key: "email"), password: MyLocalStorage().getValue(key: "password"))
+        MyLocalStorage().setValue(key: "currentSession", value: MyLocalStorage().getValue(key: "currentSession"))
     }
-    func isAuthenticated(email: String, password: String) -> Bool {
-        var auth : Bool = false
+    @State var auth : Bool = false
+    func isAuthenticated(email: String, password: String) {
+        
         if (email != "" && password != "") {
             Auth.auth().signIn(withEmail: email, password: password) { result, error in
                 if error != nil {
+                    self.auth = false
                     print(error!.localizedDescription)
-                    auth = false
-                    print("error in auth")
+                    print("Error in auth")
                 } else {
-                    auth = true
-                    print("worked")
+                    self.auth = true
+                    print("Authenticated successfully")
                 }}
             } else {
-                auth = false
-                print("no cache data")
+                self.auth = false
+                print("No cache data")
             }
-            return auth
         }
     
     

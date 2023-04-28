@@ -25,12 +25,15 @@ struct DrinkView: View {
     
     //let manager = CacheManager.instance
     
+    init() {
+        print(MyLocalStorage().getValue(key: "currentSession"))
+    }
+    
     var body: some View {
         if isInSession {
             Joined
                 .environmentObject(dataManager)
                 .onAppear{
-                    print(MyLocalStorage().getValue(key: "currentSession"))
                     drinkdb.fetchDrinksWSID(sID: MyLocalStorage().getValue(key: "currentSession"))
                 }
         } else {
@@ -47,6 +50,7 @@ struct DrinkView: View {
                      List(drinkdb.drinks, id: \.id){ item in
                         NavigationLink{
                             DetailView(name: item.name, volume: item.volume, pic: item.pic)
+                                .environmentObject(drinkdb)
                         } label: {
                             HStack{
                      //Image(uiimage: retrievedImage!)
@@ -83,7 +87,7 @@ struct DrinkView: View {
             .navigationBarBackButtonHidden(true)
         }
         .onAppear{
-            drinkdb.fetchDrinks()
+            //drinkdb.fetchDrinksWSID(sID: MyLocalStorage().getValue(key: "currentSession"))
         }
     }
     
@@ -149,5 +153,6 @@ struct DrinkView_Previews: PreviewProvider {
     static var previews: some View {
         DrinkView()
             .environmentObject(DrinkDB())
+            .environmentObject(DataManager())
     }
 }

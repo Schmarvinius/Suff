@@ -18,11 +18,11 @@ struct GroupList: View {
     //let manager = CacheManager.instance
     
     var body: some View {
+        
         List (dataManager.groups, id: \.id) {group in
             Button {
-                MyLocalStorage().setValue(key: "currentSession", value: getSession(gid: group.id))
-                let test2 = group.id
-                let test = getSession(gid: group.id)
+                drinkDB.getSession(gid: group.id)
+                MyLocalStorage().setValue(key: "currentSession", value: drinkDB.id[0]/*"yqpUTddjiglEiREZ7IMl"*/)
                 drinkDB.fetchDrinksWSID(sID: MyLocalStorage().getValue(key: "currentSession"))
             } label: {
                 HStack{
@@ -34,29 +34,6 @@ struct GroupList: View {
             }
         }
     }
-    
-    
-    //function is returning without
-    
-    func getSession(gid: String) -> String {
-        let db = Firestore.firestore()
-        let ref = db.collection("drinksSession")
-        let query = ref.whereField("gid", isEqualTo: gid)
-        var id : String = "yqpUTddjiglEiREZ7IMl"
-        query.getDocuments { snapshot, error in
-            guard error == nil else {
-                print(error!.localizedDescription)
-                return
-            }
-            if let snapshot = snapshot {
-                let data = snapshot.documents[0].data()
-                id = data["gid"] as? String ?? ""
-            }
-        }
-        return id
-        
-    }
-
 }
 
 struct GroupList_Previews: PreviewProvider {
