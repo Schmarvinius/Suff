@@ -49,7 +49,9 @@ struct AddGroupView: View {
                 TextField("id", text: $groupID)
             }
             Section {
-                Button(action: {}) {
+                Button(action: {
+                    addDataManager.addGroupWithID(groupID : groupID , dataManager : dataManager)
+                }) {
                     HStack {
                         Spacer()
                         Text("Join")
