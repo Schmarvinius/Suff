@@ -109,6 +109,29 @@ class DataManager: ObservableObject {
             }
         }
     }
+    func addFriend(email : String){
+        let newFriend = email
+        let db = Firestore.firestore()
+        let ref = db.collection("user")
+        
+        ref.whereField("id", isEqualTo: Auth.auth().currentUser?.email ?? "")
+            .getDocuments(){snapshot, error in
+                guard error == nil else {
+                    print(error!.localizedDescription)
+                    return
+                }
+                if let snapshot = snapshot {
+                    let document = snapshot.documents[0]
+                    let data = document.data()
+                    var friend : [String] = data["friends"] as? [String] ?? [""]
+                    friend.append(newFriend)
+                    ref.document(Auth.auth().currentUser?.uid ?? "").updateData([
+                        "friends" : friend
+                    ])
+                    self.fetchFriends()
+                }
+            }
+    }
     func fetchFriends(){
         let user = Auth.auth().currentUser
         if let user = user {
