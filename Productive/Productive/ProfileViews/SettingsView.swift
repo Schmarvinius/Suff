@@ -13,7 +13,7 @@ struct SettingsView: View {
         case german, english, spanish, latin
         var id: Self { self }
     }
-    @State private var selectedLanguage: Language = .english
+    @State private var selectedLanguage: Language = .latin
     
     
     

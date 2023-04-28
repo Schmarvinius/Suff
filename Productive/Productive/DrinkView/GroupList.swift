@@ -17,6 +17,13 @@ struct GroupList: View {
     
     //let manager = CacheManager.instance
     
+//    let list: [Group] = [
+//        Group(id: "1", name: "besteGruppe", userIDs: ["till@till.de", "yannis@yannis.de","marvin@marvin.de"]),
+//        Group(id: "2", name: "besteGruppe", userIDs: ["till@till.de", "yannis@yannis.de","marvin@marvin.de"]),
+//        Group(id: "3", name: "besteGruppe", userIDs: ["till@till.de", "yannis@yannis.de","marvin@marvin.de"]),
+//        Group(id: "4", name: "besteGruppe", userIDs: ["till@till.de", "yannis@yannis.de","marvin@marvin.de"])
+//    ]
+    
     var body: some View {
         
         List (dataManager.groups, id: \.id) {group in

@@ -11,6 +11,7 @@ struct Group: Identifiable {
     var id: String
     var name: String
     var userIDs: [String]
+    var desc: String
 }
 
 struct User: Identifiable {
