@@ -42,6 +42,7 @@ struct ContentView: View {
                 }
                 .environmentObject(dataManagerAch)
         }
+        .navigationBarHidden(true)
         .navigationBarBackButtonHidden(true)
         
     }
