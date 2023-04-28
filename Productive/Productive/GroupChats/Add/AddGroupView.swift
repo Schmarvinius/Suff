@@ -96,7 +96,9 @@ struct AddGroupView: View {
                     TextField("Description", text: $description)
                 }
                 Section {
-                    Button(action: {}) {
+                    Button(action: {
+                        upload(name: groupName, description: description)
+                    }) {
                         HStack {
                             Spacer()
                             Text("Create Group")
@@ -156,6 +158,7 @@ struct AddGroupView: View {
                 
                 db.collection("drinksSession").document(sid).setData([
                     "id": sid,
+                    "gid": id,
                     "alldrinks": []
                 ])
                 

@@ -43,7 +43,9 @@ struct AddChatView: View {
                 TextField("email", text: $newFriend)
             }
             Section {
-                Button(action: {}) {
+                Button(action: {
+                    dataManager.addFriend(email : newFriend)
+                }) {
                     HStack {
                         Spacer()
                         Text("Add Friend")
