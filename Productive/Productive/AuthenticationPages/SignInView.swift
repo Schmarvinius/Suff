@@ -14,7 +14,7 @@ struct SignInView: View {
     @State private var password: String = "123456"
     @State private var loggedIn = false
     
-    let manager = CacheManager.instance
+    //let manager = CacheManager.instance
     
     var body: some View {
         if loggedIn {
@@ -30,6 +30,7 @@ struct SignInView: View {
         NavigationView{
             VStack{
                 Image("IconTestDoner")
+                    .cornerRadius(20)
                 Spacer()
                 HStack {
                     Image(systemName: "person")
@@ -89,10 +90,9 @@ struct SignInView: View {
                 print(error!.localizedDescription)
                 
             } else {
-                manager.addString(value: password, key: "password")
-                manager.addString(value: email, key: "email")
+                MyLocalStorage().setValue(key: "email", value: email)
+                MyLocalStorage().setValue(key: "password", value: password)
                 self.loggedIn.toggle()
-                print("Test")
             }
         }
     }

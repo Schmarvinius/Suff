@@ -90,7 +90,7 @@ struct AddView: View {
                         if image.self != nil {
                             if name != "" {
                                 upload(name: name, vol: Int(vol) ?? 0)
-                                drinkdb.fetchDrinks()
+                                drinkdb.fetchDrinksWSID(sID: MyLocalStorage().getValue(key: "currentSession"))
                                 print("added!")
                             } else {
                                 errorbool = true
@@ -176,23 +176,25 @@ struct AddView: View {
                     "pic": path
                 ])
                 
-                let query = db.collection("drinksSession").whereField("id", isEqualTo: "yqpUTddjiglEiREZ7IMl")
+                let query = db.collection("drinksSession").whereField("id", isEqualTo: drinkdb.id /*"yqpUTddjiglEiREZ7IMl"*/)
                     query.getDocuments { snapshot, error in
                     guard error == nil else {
                         print(error!.localizedDescription)
                         return
                     }
                     if let snapshot = snapshot {
-                        let data = snapshot.documents[0].data()
-                        let drinks : [String] = data["alldrinks"] as? [String] ?? [""]
-                        for drink in drinks {
-                            alldrinks.append(drink)
+                        alldrinks = snapshot.documents.map { data in
+                            let drinks : [String] = data["alldrinks"] as? [String] ?? [""]
+                            for drink in drinks {
+                                return drink
+                            }
+                            return ""
                         }
                     }
                 }
                 alldrinks.append(id)
                 // add new drink to drinksSession
-                db.collection("drinksSession").document("yqpUTddjiglEiREZ7IMl").updateData([
+                db.collection("drinksSession").document(MyLocalStorage().getValue(key: "currentSession")).updateData([
                     "alldrinks": alldrinks
                 ])
             }

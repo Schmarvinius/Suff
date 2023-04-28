@@ -158,6 +158,7 @@ struct AddGroupView: View {
                 
                 db.collection("drinksSession").document(sid).setData([
                     "id": sid,
+                    "gid": id,
                     "alldrinks": []
                 ])
                 

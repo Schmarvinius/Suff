@@ -12,31 +12,70 @@ import FirebaseAuth
 struct AddChatView: View {
     @EnvironmentObject var dataManager: DataManager
     @EnvironmentObject var addDataManager: AddDataManager
+    
+    @State private var addFriend = true
+    
+    @State private var newFriend = ""
+    
     var body: some View {
-        NavigationView(){
-            VStack{
-                List(dataManager.friends, id: \.id){friend in
-                    Button(action:{
-                        addDataManager.addChat(user: friend, dataManager: dataManager)
-                        
-                    }, label:{
-                        HStack{
-                            Image(systemName: "person.fill")
-                                .font(.system(size: 40))
-                                .foregroundColor(Color.black)
-                            Text(friend.firstname)
-                            Text(friend.lastname)
-                            Spacer()
-                            NavigationLink("",destination: GroupView())
-                                .environmentObject(dataManager)
-                            
-                        }
-                    })
+        VStack {
+            Picker(selection: $addFriend, label: Text("Picker here")){
+                Text("Friend")
+                    .tag(true)
+                Text("Chat")
+                    .tag(false)
+            }
+            .pickerStyle(SegmentedPickerStyle())
+            .padding()
+            if addFriend {
+                contentFriend
+            }
+            else {
+                contentChat
+            }
+        }
+        .navigationTitle("Add")
+        .navigationBarTitleDisplayMode(.inline)
+    }
+    var contentFriend: some View {
+        Form {
+            Section (header: Text("email")){
+                TextField("email", text: $newFriend)
+            }
+            Section {
+                Button(action: {
+                    dataManager.addFriend(email : newFriend)
+                }) {
+                    HStack {
+                        Spacer()
+                        Text("Add Friend")
+                        Spacer()
+                    }
                 }
             }
-                .navigationTitle("Add Chat")
         }
-       
+    }
+    var contentChat: some View {
+        Form {
+            List(dataManager.friends, id: \.id){friend in
+                Button(action:{
+                    addDataManager.addChat(user: friend, dataManager: dataManager)
+                    
+                }, label:{
+                    HStack{
+                        Image(systemName: "person.fill")
+                            .foregroundColor(Color.black)
+                        Text(friend.firstname)
+                        Text(friend.lastname)
+                        Spacer()
+                        NavigationLink("",destination: GroupView())
+                            .environmentObject(dataManager)
+                        
+                    }
+                    .foregroundColor(.black)
+                })
+            }
+        }
     }
 }
 
