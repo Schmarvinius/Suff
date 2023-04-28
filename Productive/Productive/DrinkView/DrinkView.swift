@@ -26,6 +26,7 @@ struct DrinkView: View {
     //let manager = CacheManager.instance
     
     init() {
+        MyLocalStorage().setValue(key: "currentSession", value: "yqpUTddjiglEiREZ7IMl")
         print(MyLocalStorage().getValue(key: "currentSession"))
     }
     
