@@ -8,6 +8,7 @@
 import SwiftUI
 import FirebaseAuth
 import FirebaseFirestore
+import Combine
 
 struct SignUpView: View {
     @State private var username: String = ""
@@ -16,6 +17,10 @@ struct SignUpView: View {
     @State private var isSignedUp: Bool = false;
     @State private var accountExists: Bool = false;
     @State private var whichView: Int32 = 0;
+    @State private var firstname = ""
+    @State private var lastname = ""
+    @State private var height = ""
+    @State private var weight = ""
     
     let manager = CacheManager.instance
     
@@ -32,8 +37,84 @@ struct SignUpView: View {
             case 2:
                 SignInView()
             default:
-                isNotSignedUp
+                signUp
         }
+    }
+    var signUp : some View{
+        VStack {
+//            Image("IconTestDoner")
+//                .resizable()
+//                .cornerRadius(25)
+            Form {
+                Section (header: Text("account information")) {
+                    HStack {
+                        Image(systemName: "envelope")
+                        TextField("e-mail", text: $email)
+                        
+                    }
+                    HStack {
+                        Image(systemName: "lock")
+                        SecureField("password", text: $password)
+                        
+                    }
+                }
+                Section (header: Text("personal details")) {
+                    HStack {
+                        Image(systemName: "person")
+                        TextField("firstname", text: $firstname)
+                        
+                    }
+                    HStack {
+                        Image(systemName: "person")
+                        TextField("lastname", text: $lastname)
+                        
+                    }
+                    HStack {
+                        Image(systemName: "ruler")
+                        TextField("height", text: $height)
+                            .keyboardType(.numberPad)
+                            .onReceive(Just(height)) { newValue in
+                                let filtered = newValue.filter { "0123456789".contains($0)}
+                                if filtered != newValue {
+                                    height = filtered
+                                }
+                            }
+                        
+                    }
+                    HStack {
+                        Image(systemName: "scalemass")
+                        TextField("weight", text: $weight)
+                            .keyboardType(.numberPad)
+                            .onReceive(Just(weight)) { newValue in
+                                let filtered = newValue.filter { "0123456789".contains($0)}
+                                if filtered != newValue {
+                                    weight = filtered
+                                }
+                            }
+                    }
+                }
+                Section {
+                    
+                    HStack {
+                        Spacer()
+                        Button(action: signup) {
+                            Text("Sign Up")
+                        }
+                        Spacer()
+                    }
+                }
+            }
+            .scrollDisabled(true)
+            .cornerRadius(25)
+            HStack {
+                Text("Already have an account?")
+                Button(action: switchLogin){
+                    Text("Login")
+                }
+            }.font(.system(size: 14))
+        }
+        .navigationTitle("New Account")
+        .navigationBarTitleDisplayMode(.inline)
     }
     
     var isNotSignedUp: some View {
@@ -109,7 +190,8 @@ struct SignUpView: View {
         //bracket for View-Body
         }
         func signup(){
-            Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
+            let newMail = email.lowercased()
+            Auth.auth().createUser(withEmail: newMail, password: password) { authResult, error in
                 if error != nil {
                     print(error!.localizedDescription)
                 } else {
@@ -117,18 +199,23 @@ struct SignUpView: View {
                     let id: String = Auth.auth().currentUser?.uid ?? ""
                     
                     db.collection("user").document(id).setData([
-                        "id": email,
-                        "firstname": username,
-                        "lastname": username,
+                        "id": newMail,
+                        "firstname": firstname,
+                        "lastname": lastname,
                         "groups": [""],
                         "friends":[""],
-                        "chats":[""]
+                        "chats":[""],
+                        "height": height,
+                        "weight": weight,
+                        "uid": id,
+                        "pic": "",
+                        "sessions": [""]
                     ]) { err in
                         if err != nil {
                             print(err!.localizedDescription)
                         }
                         manager.addString(value: password, key: "password")
-                        manager.addString(value: email, key: "email")
+                        manager.addString(value: newMail, key: "email")
                         self.isSignedUp.toggle()
                         self.whichView = 1
                     }

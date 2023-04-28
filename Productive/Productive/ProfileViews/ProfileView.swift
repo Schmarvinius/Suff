@@ -39,7 +39,7 @@ struct ProfileView: View {
                         }
                             VStack (alignment: .leading){
                                 Text(dataManagerAch.firstname + " " + dataManagerAch.lastname)
-                                    .font(.system(size: 30))
+                                    .font(.system(size: 25))
                                 Text(email)
                                     .font(.system(size: 20))
                             }

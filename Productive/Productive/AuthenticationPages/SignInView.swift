@@ -20,10 +20,49 @@ struct SignInView: View {
         if loggedIn {
             ContentView()
         } else {
-            notLoggedIn
+//            notLoggedIn
+            contentSignIn
             
         }
     }
+    var contentSignIn: some View {
+        VStack {
+            Image("IconTestDoner")
+                .cornerRadius(25)
+            Form {
+                Section (header: Text("Account Details")){
+                    HStack {
+                        Image(systemName: "person")
+                        TextField("email", text: $email)
+                    }
+                    HStack {
+                        
+                        Image(systemName: "lock")
+                        SecureField("password", text: $password)
+                    }
+                    
+                }
+                Section {
+                    HStack {
+                        Spacer()
+                        Button(action: signIn) {
+                            Text("Sign In")
+                        }
+                        Spacer()
+                    }
+                }
+            }
+            .scrollDisabled(true)
+            .cornerRadius(25)
+            HStack {
+                Text("Forgot password?")
+                Button("Reset"){
+                    
+                }
+            }
+        }
+    }
+    
     
     
     var notLoggedIn: some View {
@@ -84,13 +123,14 @@ struct SignInView: View {
             }
     }
     func signIn(){
-        Auth.auth().signIn(withEmail: email, password: password) { result, error in
+        let newMail = email.lowercased()
+        Auth.auth().signIn(withEmail: newMail, password: password) { result, error in
             if error != nil {
                 print(error!.localizedDescription)
                 
             } else {
                 manager.addString(value: password, key: "password")
-                manager.addString(value: email, key: "email")
+                manager.addString(value: newMail, key: "email")
                 self.loggedIn.toggle()
                 print("Test")
             }

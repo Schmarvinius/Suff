@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+import FirebaseAuth
+
 
 struct SettingsView: View {
     @State private var isDarkModeEnabled = false
@@ -14,12 +16,20 @@ struct SettingsView: View {
         var id: Self { self }
     }
     @State private var selectedLanguage: Language = .latin
-    
-    
+    @State private var isSignedOut = false
     
     var body: some View {
+        if isSignedOut {
+            WelcomePageView()
+            
+        }
+        else {
+            settingView
+        }
+    }
+    
+    var settingView: some View {
         
-        NavigationView {
                 Form {
                     Section(header: Text("Appearance")) {
                         Toggle(isOn: $isDarkModeEnabled) {
@@ -33,15 +43,26 @@ struct SettingsView: View {
                         }
                     }
                     Section(header: Text("Account settings")){
-                        Button(action: {}){
+                        Button(action: {
+                            signOut()
+                        }){
                             Label("Sign out", systemImage: "rectangle.portrait.and.arrow.right")
                                 .foregroundColor(.red)
                     }
                     
                 }
-                
-            }
+               
         }
+    }
+    func signOut() {
+        do {
+            try Auth.auth().signOut()
+        } catch let signOutError as NSError {
+          print("Error signing out: %@", signOutError)
+            return
+        }
+        isSignedOut = true
+        
     }
 }
 

@@ -13,6 +13,8 @@ struct ContentView: View {
     @StateObject var addDataManager = AddDataManager()
     @StateObject var drinkDB = DrinkDB()
     
+    
+    
     var body: some View {
         TabView{
             DrinkView()
