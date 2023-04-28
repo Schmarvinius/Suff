@@ -21,7 +21,7 @@ struct DrinkView: View {
     
     let columns = [GridItem(.flexible()), GridItem(.flexible())]
 
-    @State var isInSession : Bool = (MyLocalStorage().getValue(key: "currentSession") != "")
+    @State var isInSession : Bool = true
     
     //let manager = CacheManager.instance
     
@@ -39,6 +39,7 @@ struct DrinkView: View {
         } else {
             notJoined
                 .environmentObject(dataManager)
+                .environmentObject(drinkdb)
                 
         }
     }
@@ -85,6 +86,11 @@ struct DrinkView: View {
             .navigationTitle("Your Drinks")
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarBackButtonHidden(true)
+            .navigationBarItems(trailing: NavigationLink{
+                notJoined
+            } label: {
+                Text("Change")
+            })
         }
         .onAppear{
             //drinkdb.fetchDrinksWSID(sID: MyLocalStorage().getValue(key: "currentSession"))
@@ -92,26 +98,20 @@ struct DrinkView: View {
     }
     
     var notJoined: some View {
-        NavigationStack {
-            VStack{
-                Text("Please join a group first")
-                    .padding()
-                NavigationLink(destination:
-                                GroupList()
-                                .environmentObject(dataManager)
-                                .environmentObject(drinkdb)) {
-                    Text("Join")
-                        .frame(width: 300)
-                        .padding()
-                        .foregroundColor(.white)
-                        .background(.blue)
-                        .clipShape(Capsule())
+        List (dataManager.groups, id: \.id) {group in
+            Button {
+                drinkdb.getSession(gid: group.id)
+                MyLocalStorage().setValue(key: "currentSession", value: drinkdb.id[0]/*"yqpUTddjiglEiREZ7IMl"*/)
+                drinkdb.fetchDrinksWSID(sID: MyLocalStorage().getValue(key: "currentSession"))
+            } label: {
+                HStack{
+                    Image(systemName: "person.fill")
+                        .font(.system(size: 40))
+                        .foregroundColor(Color.black)
+                    Text(group.name)
                 }
             }
-            .navigationTitle("Join")
-            .navigationBarTitleDisplayMode(.inline)
         }
-        .navigationBarBackButtonHidden(true)
     }
 
     

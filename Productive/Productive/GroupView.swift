@@ -128,9 +128,7 @@ struct GroupView: View {
     var contentGroups: some View {
         List(dataManager.groups, id: \.id){group in
             Button(action:{
-                drinkDB.getSession(gid: group.id)
-                MyLocalStorage().setValue(key: "currentSession", value: drinkDB.id[0])
-                print("current Session updated: " + drinkDB.id[0])
+                print("Hi")
             }, label:{
                 VStack{
                     HStack{
