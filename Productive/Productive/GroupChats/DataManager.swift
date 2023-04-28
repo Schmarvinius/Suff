@@ -124,7 +124,7 @@ class DataManager: ObservableObject {
                     let document = snapshot.documents[0]
                     let data = document.data()
                     var friend : [String] = data["friends"] as? [String] ?? [""]
-                    friend.append(email)
+                    friend.append(newFriend)
                     ref.document(Auth.auth().currentUser?.uid ?? "").updateData([
                         "friends" : friend
                     ])
