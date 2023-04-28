@@ -19,92 +19,55 @@ struct DrinkView: View {
     @State var pathscopy = [String]()
     @State var image : UIImage?
     
-    @State var list : [Drink] = [
-        Drink(id: "1", name: "Test1", pic: "DrinksImages/F534618C-71FA-496B-A2EF-2596A49E8886.jpg", volume: 250),
-        Drink(id: "2", name: "Test2", pic: "DrinksImages/F534618C-71FA-496B-A2EF-2596A49E8886.jpg", volume: 300),
-        Drink(id: "3", name: "Test3", pic: "DrinksImages/F534618C-71FA-496B-A2EF-2596A49E8886.jpg", volume: 120),
-        Drink(id: "4", name: "Test4", pic: "DrinksImages/F534618C-71FA-496B-A2EF-2596A49E8886.jpg", volume: 250),
-        Drink(id: "5", name: "Test5", pic: "DrinksImages/F534618C-71FA-496B-A2EF-2596A49E8886.jpg", volume: 300),
-        Drink(id: "6", name: "Test6", pic: "DrinksImages/F534618C-71FA-496B-A2EF-2596A49E8886.jpg", volume: 250),
-        Drink(id: "7", name: "Test7", pic: "DrinksImages/F534618C-71FA-496B-A2EF-2596A49E8886.jpg", volume: 300),
-        Drink(id: "8", name: "Test8", pic: "DrinksImages/F534618C-71FA-496B-A2EF-2596A49E8886.jpg", volume: 250),
-        Drink(id: "9", name: "Test9", pic: "DrinksImages/F534618C-71FA-496B-A2EF-2596A49E8886.jpg", volume: 300),
-        Drink(id: "10", name: "Test10", pic: "DrinksImages/F534618C-71FA-496B-A2EF-2596A49E8886.jpg", volume: 250),
-    ]
-    
-    @State var session : String = "yqpUTddjiglEiREZ7IMl"
-    
     let columns = [GridItem(.flexible()), GridItem(.flexible())]
+
+    @State var isInSession : Bool = (MyLocalStorage().getValue(key: "currentSession") != "")
     
-    @State var isInGroup : Bool = false
+    //let manager = CacheManager.instance
     
-    let manager = CacheManager.instance
+    init() {
+        print(MyLocalStorage().getValue(key: "currentSession"))
+    }
     
     var body: some View {
-        
-        
-        
-        if /*manager.getString(key: "currentGroup")*/session != "" {
+        if isInSession {
             Joined
+                .environmentObject(dataManager)
+                .onAppear{
+                    drinkdb.fetchDrinksWSID(sID: MyLocalStorage().getValue(key: "currentSession"))
+                }
         } else {
             notJoined
                 .environmentObject(dataManager)
+                
         }
     }
     
     var Joined: some View {
-        NavigationView {
+        NavigationStack {
             ZStack{
-                /*
-                ScrollView{
-                    LazyVGrid(columns: columns) {
-                        ForEach(list) { item in
-                            NavigationLink{
-                                DetailView(name: item.name, volume: item.volume, pic: item.pic)
-                                    
-                            } label: {
-                                VStack{
-                                    //Image(uiimage: retrievedImage[])
-                                    RoundedRectangle(cornerRadius: 10)
-                                        .frame(maxWidth: 100, maxHeight:100)
-                                    Text(item.name)
+                VStack{
+                     List(drinkdb.drinks, id: \.id){ item in
+                        NavigationLink{
+                            DetailView(name: item.name, volume: item.volume, pic: item.pic)
+                                .environmentObject(drinkdb)
+                        } label: {
+                            HStack{
+                     //Image(uiimage: retrievedImage!)
+                                ZStack{
+                                    Rectangle()
+                                        .frame(maxWidth: 50, maxHeight: 50)
+                                        .cornerRadius(10)
+                                    ProgressView()
+                                        .progressViewStyle(CircularProgressViewStyle(tint: .gray))
+                                        .scaleEffect(1)
                                 }
+                                .padding(.trailing, 5)
+                                Text(item.name)
                             }
-                            .frame(width: 150, height:150)
-                            .background(.gray)
-                            .cornerRadius(20)
-                            .onTapGesture {
-                                print("Hi")
-                            }
-                        }
+                        }.frame(height: 50)
                     }
-                    .padding(.bottom, 100)
                 }
-                */
-                
-                
-                 VStack{
-                 List(drinkdb.drinks, id: \.id){ item in
-                 NavigationLink{
-                 DetailView(name: item.name, volume: item.volume, pic: item.pic)
-                 } label: {
-                 HStack{
-                 //Image(uiimage: retrievedImage!)
-                     ZStack{
-                         Rectangle()
-                             .frame(maxWidth: 50, maxHeight: 50)
-                             .cornerRadius(10)
-                         ProgressView()
-                             .progressViewStyle(CircularProgressViewStyle(tint: .gray))
-                             .scaleEffect(1)
-                     }
-                     .padding(.trailing, 5)
-                 Text(item.name)
-                 }
-                 }.frame(height: 50)
-                 
-                 }
-                 }
                 
                 VStack{
                     Spacer()
@@ -123,14 +86,20 @@ struct DrinkView: View {
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarBackButtonHidden(true)
         }
+        .onAppear{
+            //drinkdb.fetchDrinksWSID(sID: MyLocalStorage().getValue(key: "currentSession"))
+        }
     }
     
     var notJoined: some View {
-        NavigationView {
+        NavigationStack {
             VStack{
                 Text("Please join a group first")
                     .padding()
-                NavigationLink(destination: GroupList().environmentObject(dataManager)) {
+                NavigationLink(destination:
+                                GroupList()
+                                .environmentObject(dataManager)
+                                .environmentObject(drinkdb)) {
                     Text("Join")
                         .frame(width: 300)
                         .padding()
@@ -184,5 +153,6 @@ struct DrinkView_Previews: PreviewProvider {
     static var previews: some View {
         DrinkView()
             .environmentObject(DrinkDB())
+            .environmentObject(DataManager())
     }
 }

@@ -13,103 +13,76 @@ import FirebaseAuth
 
 class DrinkDB: ObservableObject{
     
-    @Published var drinks: [Drink] = []
-    //@Published var sessions: [Sessions] = []
-    
-    
     init() {
-        fetchDrinks()
-        //fetchSessions()
+        
     }
     
-    //get user
-    //get sessionID
-    //load all dirnks from session
-    
-    /*func fetchDrinks() {
-        drinks.removeAll()
-        let db = Firestore.firestore()
-        let ref = db.collection("drink")
-        ref.getDocuments { snapshot, error in
-            guard error == nil else {
-                print(error!.localizedDescription)
-                return
-            }
-            if let snapshot = snapshot {
-                for document in snapshot.documents {
-                    let data = document.data()
-                    
-                    let id = data["id"] as? String ?? ""
-                    let name = data["name"] as? String ?? ""
-                    let volume = data["volume"] as? Int ?? 0
-                    let pic = data["pic"] as? String ?? ""
-                        
-                    self.drinks.append(Drink(id: id, name: name, pic: pic, volume: volume))
-            }
-            }
-        }
-    }*/
-    
     //Get all personal drinks form group
-    func fetchDrinks() {
+
+    @Published var drinks: [Drink] = []
+    func fetchDrinksWSID(sID: String) {
         drinks.removeAll()
         let db = Firestore.firestore()
-        let ref = db.collection("user")
-        let user = Auth.auth().currentUser
-        
-        //Get users sessions
-        if let user = user {
-            let email : String = user.email ?? "Fehler"
-            let query = ref.whereField("id", isEqualTo: email)
-            query.getDocuments { snapshot, error in
+        let query = db.collection("drinksSession").whereField("id", isEqualTo: sID/*sessionID MyLocalStorage().getValue(key: "currentSession")*/)
+            query.getDocuments { snapshot,error in
                 guard error == nil else {
                     print(error!.localizedDescription)
                     return
                 }
                 if let snapshot = snapshot {
-                    let data = snapshot.documents[0].data()
-                    let sessionIDs : [String] = data["sessions"] as? [String] ?? [""]
-                    
-                    //get all drinks from one session
-                    //for sessionID in sessionIDs {
-                        let query = db.collection("drinksSession").whereField("id", isEqualTo: "yqpUTddjiglEiREZ7IMl"/*sessionID*/)
-                        query.getDocuments { snapshot,error in
-                            guard error == nil else {
-                                print(error!.localizedDescription)
-                                return
-                            }
-                            if let snapshot = snapshot {
-                                let data = snapshot.documents[0].data()
-                                let ids : [String]  = data["alldrinks"] as? [String] ?? [""]
-                                
-                                //get each drink information
-                                for id in ids {
-                                    let query = db.collection("drink").whereField("id", isEqualTo: id)
-                                    query.getDocuments { snapshot,error in
-                                        guard error == nil else {
-                                            print(error!.localizedDescription)
-                                            return
-                                        }
-                                        if let snapshot = snapshot {
-                                            //let id = db.collection("dirnk").document().documentID
-                                            
-                                            let data = snapshot.documents[0].data()
-                                            
-                                            let id = data["id"] as? String ?? ""
-                                            let name = data["name"] as? String ?? ""
-                                            let volume = data["volume"] as? Int ?? 0
-                                            let pic = data["pic"] as? String ?? ""
-                                            
-                                            self.drinks.append(Drink(id: id, name: name, pic: pic, volume: volume))
-                                        }
+                    DispatchQueue.main.async {
+                        for document in snapshot.documents {
+                            let data = document.data()
+                            let ids : [String]  = data["alldrinks"] as? [String] ?? [""]
+                            for id in ids {
+                                let query = db.collection("drink").whereField("id", isEqualTo: id)
+                                query.getDocuments { snapshot,error in
+                                    guard error == nil else {
+                                        print(error!.localizedDescription)
+                                        return
+                                    }
+                                    if let snapshot = snapshot {
+                                        //let id = db.collection("dirnk").document().documentID
+                                            let test = snapshot.documents.map { data in
+                                                let id = data["id"] as? String ?? ""
+                                                let name = data["name"] as? String ?? ""
+                                                let volume = data["volume"] as? Int ?? 0
+                                                let pic = data["pic"] as? String ?? ""
+                                                
+                                                let newdrink = Drink(id: id, name: name, pic: pic, volume: volume)
+                                                self.drinks.append(newdrink)
+                                                return newdrink
+
+                                            }
                                     }
                                 }
                             }
-//                        }
+                        }
                     }
                 }
+        }
+    }
+    
+    @Published var id : [String] = []
+    func getSession(gid: String){
+        let db = Firestore.firestore()
+        let ref = db.collection("drinksSession")
+        let query = ref.whereField("gid", isEqualTo: gid)
+        query.getDocuments { snapshot, error in
+            guard error == nil else {
+                print(error!.localizedDescription)
+                return
+            }
+            if let snapshot = snapshot {
+                DispatchQueue.main.async {
+                    self.id = snapshot.documents.map { data in
+                        return data["gid"] as? String ?? ""
+                    }
+                }
+                
             }
         }
+        
     }
 }
     

@@ -6,14 +6,16 @@
 //
 
 import SwiftUI
+import FirebaseFirestore
 
 
 
 struct GroupList: View {
     
     @EnvironmentObject var dataManager : DataManager
+    @EnvironmentObject var drinkDB: DrinkDB
     
-    let manager = CacheManager.instance
+    //let manager = CacheManager.instance
     
 //    let list: [Group] = [
 //        Group(id: "1", name: "besteGruppe", userIDs: ["till@till.de", "yannis@yannis.de","marvin@marvin.de"]),
@@ -24,29 +26,20 @@ struct GroupList: View {
     
     var body: some View {
         
-        NavigationView {
-            List (dataManager.groups, id: \.id) {group in
-                NavigationLink(destination: DrinkView()) {
-                    HStack{
-                        Image(systemName: "person.fill")
-                            .font(.system(size: 40))
-                            .foregroundColor(Color.black)
-                        Text(group.name)
-                            .onTapGesture {
-                                print("tapped")
-                                manager.addString(value: group.id, key: "currentGroup")
-                                let test = manager.getString(key: "currentGroup")
-                            }
-                    }
-                    
+        List (dataManager.groups, id: \.id) {group in
+            Button {
+                drinkDB.getSession(gid: group.id)
+                MyLocalStorage().setValue(key: "currentSession", value: drinkDB.id[0]/*"yqpUTddjiglEiREZ7IMl"*/)
+                drinkDB.fetchDrinksWSID(sID: MyLocalStorage().getValue(key: "currentSession"))
+            } label: {
+                HStack{
+                    Image(systemName: "person.fill")
+                        .font(.system(size: 40))
+                        .foregroundColor(Color.black)
+                    Text(group.name)
                 }
-                
             }
         }
-    }
-    
-    var test: some View{
-        Text("HI")
     }
 }
 
