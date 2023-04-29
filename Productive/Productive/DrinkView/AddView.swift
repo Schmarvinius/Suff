@@ -78,6 +78,12 @@ struct AddView: View {
                     
                     TextField("Volume in ml", text: $vol)
                         .keyboardType(.numberPad)
+                        .onChange(of: vol) { newValue in
+                            let filtered = newValue.filter{"0123456789".contains($0)}
+                            if filtered != newValue {
+                                vol = filtered
+                            }
+                        }
                         .frame(minWidth: 0,maxWidth: 300)
                         .font(.system(size:18))
                         .padding()
