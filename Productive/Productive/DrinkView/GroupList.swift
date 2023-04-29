@@ -19,8 +19,9 @@ struct GroupList: View {
         
         List (dataManager.groups, id: \.id) {group in
             Button {
+                print("Test")
                 drinkDB.getSession(gid: group.id)
-                MyLocalStorage().setValue(key: "currentSession", value: drinkDB.id/*"yqpUTddjiglEiREZ7IMl"*/)
+                MyLocalStorage().setValue(key: "currentSession", value: drinkDB.id)
                 drinkDB.fetchDrinksWSID(sID: MyLocalStorage().getValue(key: "currentSession"))
             } label: {
                 HStack{
